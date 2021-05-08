@@ -194,7 +194,44 @@ class Account{
     
         return 0;        
     }
-
-}
-
+  
+    function readOne() {
+        //query to select single account record
+        
+        //prepare the query statement
+        
+        //execute the query
+      
+        //get the retreived row
+      
+        //set values to object properties
+    }  
+    
+    function update() {
+        //create update query
+      
+        //prepare the query statement
+      
+        //sanitize the update values
+      
+        //bind new values
+      
+        //execute the query statement
+        
+    }
+    
+    function search($keywords) {
+        //create select query using like
+        
+        //prepare the query statement
+      
+        //sanitize values
+      
+        //bind values to properties
+      
+        //execute query
+      
+        //return rows
+        
+    }
 ?>
