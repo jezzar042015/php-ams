@@ -62,9 +62,9 @@ class Policy{
     public $earned_commission; 
     public $unearned_commission;
 
-    public $covered_vehicles = [];
-    public $covered_drivers = []; 
-    public $endorsements = []; 
+    public $covered_vehicles;
+    public $covered_drivers; 
+    public $endorsements; 
 
     public $agentsplit;
     public $policystate;
@@ -81,10 +81,18 @@ class Policy{
 
     }
 
+    function readOne() {
+
+    }
+    
     function create() {
 
     }
 
+    function update() {
+
+    }    
+    
     function fetch_CoveredVehicles() {
 
     }
