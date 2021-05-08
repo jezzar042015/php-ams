@@ -43,6 +43,7 @@ if($num>0){
             "usdot" => $usdot,
             "statePermit" => $statePermit,
             "taxid" => $taxid,
+            "authority" => $authority,
             "legalname" => $legalname,
             "dba" => $dba,
             "operation" => $operation,

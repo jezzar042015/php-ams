@@ -14,6 +14,7 @@ class Account{
     public $usdot;
     public $statePermit;
     public $taxid;
+    public $authority;
     public $legalname;
     public $dba;
     public $operation;
@@ -62,6 +63,7 @@ class Account{
                     usdot,
                     statePermit,
                     taxid,
+                    authority,
                     legalname,
                     dba,
                     accounts.operation,
@@ -234,4 +236,5 @@ class Account{
         //return rows
         
     }
+}
 ?>
