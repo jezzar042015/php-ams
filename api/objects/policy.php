@@ -82,8 +82,18 @@ class Policy{
     }
 
     function create() {
-        
+
     }
+
+    function fetch_CoveredVehicles() {
+
+    }
+
+    function fetch_CoveredDrivers() {
+
+    }
+
+    
 }
 
 ?>
