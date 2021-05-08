@@ -20,6 +20,7 @@ class Policy{
     public $bindDate;
     public $effective;
     public $expiration;
+    public $cancellation;
 
     public $baseperunit;
     public $duesperunit_nontaxed;
@@ -41,7 +42,7 @@ class Policy{
     public $totalpremium;
     public $commission; 
 
-    public $initial_premium:
+    public $initial_premium;
     public $initial_surcharge;
     public $initial_surplusTax;
     public $initial_brokerfees;
@@ -72,6 +73,8 @@ class Policy{
     public $pf_accountNo;
     public $notes;
     public $onInceptionStage;
+
+    public $agentName;
 
     public function __construct($db){
         $this->conn = $db;

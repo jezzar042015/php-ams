@@ -6,9 +6,12 @@ CREATE TABLE IF NOT  EXISTS accounts (
     accountID   int(11) NOT NULL  AUTO_INCREMENT,
     accountStatus TINYINT DEFAULT 1,
     accountType TINYINT DEFAULT 1,
+
     usdot VARCHAR (50),
     statePermit VARCHAR (50),
     taxid VARCHAR (50),
+    authority VARCHAR (50),
+
     legalName VARCHAR (256) NOT NULL,
     dba VARCHAR (256),
     operation TINYINT,
@@ -35,6 +38,7 @@ CREATE TABLE IF NOT  EXISTS accounts (
 UPDATE accounts SET usdot = NULL WHERE LENGTH(usdot) = 0;
 UPDATE accounts SET statePermit = NULL WHERE LENGTH(statePermit) = 0;
 UPDATE accounts SET taxid = NULL WHERE LENGTH(taxid) = 0;
+UPDATE accounts SET authority = NULL WHERE LENGTH(authority) = 0;
 UPDATE accounts SET dba = NULL WHERE LENGTH(dba) = 0;
 UPDATE accounts SET notes = NULL WHERE LENGTH(notes) = 0;
 UPDATE accounts SET yearClient = NULL WHERE LENGTH(yearClient) = 0;

@@ -8,6 +8,7 @@ CREATE TABLE IF NOT  EXISTS policies (
     bindDate DATE NULL,
     effective DATE NULL,
     expiration DATE NULL,
+    cancellation DATE NULL,
 
     baseperunit DECIMAL (10,4) NULL,
     duesperunit_nontaxed DECIMAL (10,4) NULL,
