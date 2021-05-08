@@ -22,10 +22,12 @@ class Account{
     public $radius_name;
     public $mailAddress;
     public $mailCity;
+    public $mailCity_name;
     public $mailState;
     public $mailZip;
     public $garageAddress;
     public $garageCity;
+    public $garageCity_name;
     public $garageState;
     public $garageZip;
     public $notes;
@@ -60,10 +62,12 @@ class Account{
                     radius.radius AS radius_name,
                     mailAddress,
                     mailCity,
+                    (SELECT city FROM usstates WHERE id = mailCity LIMIT 1) AS mailCity_name,
                     mailState,
                     mailZip,
                     garageAddress,
                     garageCity,
+                    (SELECT city FROM usstates WHERE id = garageCity LIMIT 1) AS garageCity_name,
                     garageState,
                     garageZip,
                     notes,
