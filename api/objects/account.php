@@ -37,6 +37,14 @@ class Account{
     public $agent;
     public $agent_name;
     public $created;
+    
+    public $contacts;
+    public $policies;
+    public $drivers;
+    public $vehicles;
+    public $endorsements;
+  
+  
     // constructor with $db as database connection
     public function __construct($db){
         $this->conn = $db;
