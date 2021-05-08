@@ -131,12 +131,30 @@ class Account{
         $stmt = $this->conn->prepare($query);
     
         // sanitize
-        // $this->name=htmlspecialchars(strip_tags($this->name));
-        // $this->price=htmlspecialchars(strip_tags($this->price));
-        // $this->description=htmlspecialchars(strip_tags($this->description));
-        // $this->category_id=htmlspecialchars(strip_tags($this->category_id));
-        // $this->created=htmlspecialchars(strip_tags($this->created));
-    
+        $this->name=htmlspecialchars(strip_tags($this->legalname));
+        $this->name=htmlspecialchars(strip_tags($this->accountStatus));
+        $this->name=htmlspecialchars(strip_tags($this->accountType));
+        $this->name=htmlspecialchars(strip_tags($this->usdot));
+        $this->name=htmlspecialchars(strip_tags($this->statePermit));
+        $this->name=htmlspecialchars(strip_tags($this->taxid));
+        $this->name=htmlspecialchars(strip_tags($this->dba));
+        $this->name=htmlspecialchars(strip_tags($this->operation));
+        $this->name=htmlspecialchars(strip_tags($this->radius));
+        $this->name=htmlspecialchars(strip_tags($this->mailAddress));
+        $this->name=htmlspecialchars(strip_tags($this->mailCity));
+        $this->name=htmlspecialchars(strip_tags($this->mailState));
+        $this->name=htmlspecialchars(strip_tags($this->mailZip));
+
+        $this->name=htmlspecialchars(strip_tags($this->garageAddress));
+        $this->name=htmlspecialchars(strip_tags($this->garageCity));
+        $this->name=htmlspecialchars(strip_tags($this->garageState));
+        $this->name=htmlspecialchars(strip_tags($this->garageZip));
+
+        $this->name=htmlspecialchars(strip_tags($this->notes));
+        $this->name=htmlspecialchars(strip_tags($this->accountSource));
+        $this->name=htmlspecialchars(strip_tags($this->yearClient));
+        $this->name=htmlspecialchars(strip_tags($this->agent));
+        
         // bind values
         $stmt->bindParam(":legalname", $this->legalname);
         $stmt->bindParam(":accountStatus", $this->accountStatus);
