@@ -3,6 +3,9 @@
 // required headers either with GET values or none
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
+header("Access-Control-Allow-Methods: GET");
+header("Access-Control-Allow-Credentials: true");
+header('Content-Type: application/json');
 
 // include database and the policy object
 include_once '../config/database.php';
@@ -15,8 +18,15 @@ $db = $database->getConnection();
 // instantiate policy object
 $policy = new Policy($db);
 
-//query accounts
-$stmt = $policy->read();
+// //set the accountid of account object from GET
+// $policy->accountid = isset($_GET['accountid']) ? $_GET['accountid']: 
+
+if (isset($_GET['accountid'])) {
+    $policy->accountid = $_GET['accountid'];
+    $stmt = $policy->readByAccount();
+} else {
+    $stmt = $policy->read();
+}
 
 //count results
 $num = $stmt->rowCount();

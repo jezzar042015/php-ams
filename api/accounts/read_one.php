@@ -17,7 +17,6 @@ $db = $database->getConnection();
 $account = New Account($db);
 
 //set the accountid of account object from GET
-
 $account->accountid = isset($_GET['accountid']) ? $_GET['accountid']: die();
 
 // read the account using the accountID

@@ -140,8 +140,76 @@ class Policy{
 
     }
 
-    function readByAccount($accountID,$status) {
+    function readByAccount() {
+        
+        //create query statement
+            $query = 
+            "SELECT 
+                policyID,
+                policyNumber,
+                accountID,
+                
+                mgaID,
+               
+                carrierID,
+                
+                coverageType,
+                
+                bindDate,
+                effective,
+                expiration,
+                cancellation,
 
+                baseperunit,
+                duesperunit_nontaxed,
+                pdrate,
+                trailerrate,
+                not_rate,
+                ti_rate,
+                bfrate,
+                strate,
+                commissionrate,
+
+                premium,
+                surcharge,
+                policyfees,
+                mgafees,
+                surplusTax,
+                brokerfees,
+                otherfees,
+                totalpremium,
+                commission,
+
+                agentsplit,
+                policystate,
+                premiumfinancer,
+                
+                pf_accountNo,
+                notes,
+                onInceptionStage,
+                created,
+                modified
+
+            FROM policies 
+            
+            WHERE accountid = :accountid
+            ORDER BY effective DESC";
+
+            //JOINED TABLES
+            // policies, accounts, agents, mgas, carriers, banks
+
+        //prepare the query statement
+            $stmt = $this->conn->prepare($query);
+
+        //bind variables to query
+            $stmt->bindParam(':accountid', $this->accountid);
+
+        //execute query
+            $stmt->execute();
+
+        //get the retrieved rows
+            return $stmt;
+        
     }
 
     function create() {
