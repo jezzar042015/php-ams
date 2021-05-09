@@ -2,6 +2,7 @@
     margin: 0px;
     padding: 0px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-sizing: border-box;
 }
 
 body {
@@ -84,7 +85,8 @@ body {
 }
 
 #account-detail-col-1 p, 
-#account-detail-col-2 p {
+#account-detail-col-2 p,
+#account-notes-containter p {
     
     background: none;
     margin-top: 10px;
@@ -132,7 +134,7 @@ body {
 
     display: grid;
     grid-template-columns: auto;
-    grid-template-rows: 25px auto 50px;
+    grid-template-rows: 25px auto 60px;
 }
 
 #contact-section-header {
@@ -141,15 +143,39 @@ body {
 }
 
 #contacts-list-containter {
-    background-color: aqua;
+    /* background-color: aqua; */
     grid-column: 1 / span 1;
-    grid-row: 2 / span 2;
+    grid-row: 2 ;
 }
 
 #account-notes-containter {
-    background-color: aquamarine;
     grid-column: 1 / span 1;
-    grid-row: 3 / span 3;
+    grid-row: 3 ;
+
+    display: grid;
+    grid-template-columns: 50px auto;
+
+}
+
+#notes {
+    display: inline;
+    margin: 0px 10px 10px 15px;
+    padding-left: 5px ;
+    padding-top: 5px ;
+    width: auto;
+    height: auto;
+    resize: none;
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom-style: hidden;
+    background-color: rgb(253, 253, 253);
+}
+
+#notes:focus {
+    outline: none !important;
+    border:1px ;
+    box-shadow: 0 0 5px rgba(255, 0, 0, 0.192);
 }
 
 #account-drivers {
@@ -215,6 +241,7 @@ body {
 }
 
 .account-labels {
+    font-size: 14px;
     font-weight: 500;
     color: rgb(85, 84, 84);
 }

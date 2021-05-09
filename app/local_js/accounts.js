@@ -49,6 +49,8 @@ function loadAccountSelect(accountID) {
 
     var acc = account[0];
 
+    // console.log(acc);
+
     document.getElementById('legalname').innerText = acc.legalname;
     document.getElementById('usdot').innerText = acc.usdot;
     document.getElementById('authority').innerText = null;
@@ -64,5 +66,6 @@ function loadAccountSelect(accountID) {
         acc.mailAddress + ', ' + acc.mailCity_name + ', ' + acc.mailState + ' ' + acc.mailZip;
     document.getElementById('garaging').innerText =  
         acc.garageAddress + ', ' + acc.garageCity_name + ', ' + acc.garageState + ' ' + acc.garageZip;
+    document.getElementById('notes').value = acc.notes;  
 }
 
