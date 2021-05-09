@@ -10,7 +10,7 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 include_once '../config/database.php';
   
 // instantiate account object
-include_once '../objects/account.php';
+include_once '../_objects/account.php';
   
 $database = new Database();
 $db = $database->getConnection();

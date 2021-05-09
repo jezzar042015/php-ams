@@ -9,7 +9,7 @@ header('Content-Type: application/json');
 
 // include database and the policy object
 include_once '../config/database.php';
-include_once '../objects/policy.php';
+include_once '../_objects/policy.php';
 
 // instantiate database  
 $database = new Database();
