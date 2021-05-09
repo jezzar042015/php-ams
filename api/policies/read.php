@@ -8,7 +8,7 @@ header("Access-Control-Allow-Credentials: true");
 header('Content-Type: application/json');
 
 // include database and the policy object
-include_once '../config/database.php';
+include_once '../_config/database.php';
 include_once '../_objects/policy.php';
 
 // instantiate database  
