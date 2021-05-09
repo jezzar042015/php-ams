@@ -1,19 +1,19 @@
 <?php
 
-// required headers
+// required headers either with GET values or none
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 
 // include database and the policy object
 include_once '../config/database.php';
-include_once '../config/policy.php';
+include_once '../objects/policy.php';
 
 // instantiate database  
 $database = new Database();
 $db = $database->getConnection();
 
 // instantiate policy object
-$policy = new Policy();
+$policy = new Policy($db);
 
 //query accounts
 $stmt = $policy->read();
@@ -35,14 +35,14 @@ if($num>0){
         $policy_item=array(
             "policyID" => $policyID,
             "policyNumber"=> $policyNumber,
-            "accountid" => $accountid,
-            "legalname"=> $legalname,
+            "accountID" => $accountID,
+            // "legalname"=> $legalname,
             "mgaID"=> $mgaID,
-            "mganame"=> $mganame,
+            // "mganame"=> $mganame,
             "carrierID"=> $carrierID,
-            "carriername"=> $carriername,
+            // "carriername"=> $carriername,
             "coverageType"=> $coverageType,
-            "coverageType_name"=> $coverageType_name,
+            // "coverageType_name"=> $coverageType_name,
             "bindDate"=> $bindDate,
             "effective"=> $effective,
             "expiration"=> $expiration,
@@ -68,39 +68,39 @@ if($num>0){
             "totalpremium"=> $totalpremium,
             "commission"=> $commission, 
 
-            "initial_premium"=> $initial_premium:
-            "initial_surcharge"=> $initial_surcharge,
-            "initial_surplusTax"=> $initial_surplusTax,
-            "initial_brokerfees"=> $initial_brokerfees,
-            "initial_endtfees"=> $initial_endtfees,
-            "initial_otherfees"=> $initial_otherfees,
-            "initial_totalpremium"=> $initial_totalpremium,
-            "initial_commission"=> $initial_commission, 
+            // "initial_premium"=> $initial_premium,
+            // "initial_surcharge"=> $initial_surcharge,
+            // "initial_surplusTax"=> $initial_surplusTax,
+            // "initial_brokerfees"=> $initial_brokerfees,
+            // "initial_endtfees"=> $initial_endtfees,
+            // "initial_otherfees"=> $initial_otherfees,
+            // "initial_totalpremium"=> $initial_totalpremium,
+            // "initial_commission"=> $initial_commission, 
         
-            "cummulative_premium"=> $cummulative_premium:
-            "cummulative_surcharge"=> $cummulative_surcharge,
-            "cummulative_surplusTax"=> $cummulative_surplusTax,
-            "cummulative_brokerfees"=> $cummulative_brokerfees,
-            "cummulative_endtfees"=> $cummulative_endtfees,
-            "cummulative_otherfees"=> $cummulative_otherfees,
-            "cummulative_totalpremium"=> $cummulative_totalpremium,
-            "cummulative_commission"=> $cummulative_commission, 
+            // "cummulative_premium"=> $cummulative_premium,
+            // "cummulative_surcharge"=> $cummulative_surcharge,
+            // "cummulative_surplusTax"=> $cummulative_surplusTax,
+            // "cummulative_brokerfees"=> $cummulative_brokerfees,
+            // "cummulative_endtfees"=> $cummulative_endtfees,
+            // "cummulative_otherfees"=> $cummulative_otherfees,
+            // "cummulative_totalpremium"=> $cummulative_totalpremium,
+            // "cummulative_commission"=> $cummulative_commission, 
         
-            "earned_commission"=> $earned_commission, 
-            "unearned_commission"=> $unearned_commission,
+            // "earned_commission"=> $earned_commission, 
+            // "unearned_commission"=> $unearned_commission,
         
-            "covered_vehicles"=> $covered_vehicles,
-            "covered_drivers"=> $covered_drivers, 
-            "endorsements"=> $endorsements, 
+            // "covered_vehicles"=> $covered_vehicles,
+            // "covered_drivers"=> $covered_drivers, 
+            // "endorsements"=> $endorsements, 
         
             "agentsplit"=> $agentsplit,
             "policystate"=> $policystate,
             "premiumfinancer"=> $premiumfinancer,
             "pf_accountNo"=> $pf_accountNo,
             "notes"=> $notes,
-            "onInceptionStage"=> $onInceptionStage,
-        
-            "agentName"=> $agentName,
+            "onInceptionStage"=> $onInceptionStage
+
+            // "agentName"=> $agentName
 
         );
 

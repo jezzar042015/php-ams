@@ -6,7 +6,7 @@ class Policy{
     private $table_name = "policies";
 
 
-    //objectProperties
+    // objectProperties
     public $policyID;
     public $policyNumber;
     public $accountID;
@@ -32,7 +32,7 @@ class Policy{
     public $strate;
     public $commissionrate;
 
-    public $premium:
+    public $premium;
     public $surcharge;
     public $policyfees;
     public $mgafees;
@@ -51,7 +51,7 @@ class Policy{
     public $initial_totalpremium;
     public $initial_commission; 
 
-    public $cummulative_premium:
+    public $cummulative_premium;
     public $cummulative_surcharge;
     public $cummulative_surplusTax;
     public $cummulative_brokerfees;
@@ -70,18 +70,70 @@ class Policy{
     public $agentsplit;
     public $policystate;
     public $premiumfinancer;
+    public $premiumfinancer_name;
     public $pf_accountNo;
     public $notes;
     public $onInceptionStage;
 
     public $agentName;
 
+    // constructor with $db as database connection
     public function __construct($db){
         $this->conn = $db;
     }
 
     function read() {
+        //select all query
+        $query = 
+            "SELECT 
+                policyID,
+                policyNumber,
+                accountID,
+                mgaID,
+                carrierID,
+                coverageType,
+                bindDate,
+                effective,
+                expiration,
+                cancellation,
 
+                baseperunit,
+                duesperunit_nontaxed,
+                pdrate,
+                trailerrate,
+                not_rate,
+                ti_rate,
+                bfrate,
+                strate,
+                commissionrate,
+
+                premium,
+                surcharge,
+                policyfees,
+                mgafees,
+                surplusTax,
+                brokerfees,
+                otherfees,
+                totalpremium,
+                commission,
+
+                agentsplit,
+                policystate,
+                premiumfinancer,
+                pf_accountNo,
+                notes,
+                onInceptionStage,
+                created,
+                modified
+            FROM policies ORDER BY effective DESC";
+
+        //prepare query statement
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->execute();
+
+        return $stmt;
+        
     }
 
     function readOne() {

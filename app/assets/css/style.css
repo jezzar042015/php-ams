@@ -143,7 +143,7 @@ body {
 }
 
 #contacts-list-containter {
-    /* background-color: aqua; */
+    
     grid-column: 1 / span 1;
     grid-row: 2 ;
 }
@@ -310,7 +310,62 @@ li.selectedAccount {
     top: -10px;
     left: -5px;
     min-width: 150px;
+    z-index: 1;
 }
+
+table,
+th,
+td {
+    border: 1px solid none;
+}
+
+table {
+    width: auto;
+    height: 95px;
+    border-collapse: collapse;
+    margin-left: 15px;
+    margin-right: 10px;
+    margin-bottom: 15px;
+    display: grid;
+
+    font-size: 14px;
+    color:  rgb(85, 84, 84);
+
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+th {
+    font-weight: 500;
+    text-align: left;
+    height: 30px;
+    position: sticky;
+    top: 0;
+    background: rgba(238, 236, 236, 0.884);
+}
+
+td {
+    text-align: left;
+    /* width: 200px; */
+    height: 22px; 
+}
+
+.contacts-col-name {
+    width: 300px;
+}
+
+.contacts-col-title {
+    width: 100px;
+}
+
+.contacts-col-mobile {
+    width: 120px;
+}
+
+.contacts-col-email {
+    width: 250px;
+}
+
 
 /* width */
 ::-webkit-scrollbar {
