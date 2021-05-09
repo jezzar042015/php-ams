@@ -139,7 +139,11 @@ class Policy{
     function readOne() {
 
     }
-    
+
+    function readByAccount($accountID,$status) {
+
+    }
+
     function create() {
 
     }

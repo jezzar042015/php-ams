@@ -89,9 +89,9 @@ if($num>0){
             // "earned_commission"=> $earned_commission, 
             // "unearned_commission"=> $unearned_commission,
         
-            // "covered_vehicles"=> $covered_vehicles,
-            // "covered_drivers"=> $covered_drivers, 
-            // "endorsements"=> $endorsements, 
+            "covered_vehicles"=> array(),
+            "covered_drivers"=> array(), 
+            "endorsements"=> array(), 
         
             "agentsplit"=> $agentsplit,
             "policystate"=> $policystate,

@@ -141,29 +141,29 @@ class Account{
         $stmt = $this->conn->prepare($query);
     
         // sanitize
-        $this->name=htmlspecialchars(strip_tags($this->legalname));
-        $this->name=htmlspecialchars(strip_tags($this->accountStatus));
-        $this->name=htmlspecialchars(strip_tags($this->accountType));
-        $this->name=htmlspecialchars(strip_tags($this->usdot));
-        $this->name=htmlspecialchars(strip_tags($this->statePermit));
-        $this->name=htmlspecialchars(strip_tags($this->taxid));
-        $this->name=htmlspecialchars(strip_tags($this->dba));
-        $this->name=htmlspecialchars(strip_tags($this->operation));
-        $this->name=htmlspecialchars(strip_tags($this->radius));
-        $this->name=htmlspecialchars(strip_tags($this->mailAddress));
-        $this->name=htmlspecialchars(strip_tags($this->mailCity));
-        $this->name=htmlspecialchars(strip_tags($this->mailState));
-        $this->name=htmlspecialchars(strip_tags($this->mailZip));
+        $this->legalname=htmlspecialchars(strip_tags($this->legalname));
+        $this->accountStatus=htmlspecialchars(strip_tags($this->accountStatus));
+        $this->accountType=htmlspecialchars(strip_tags($this->accountType));
+        $this->usdot=htmlspecialchars(strip_tags($this->usdot));
+        $this->statePermit=htmlspecialchars(strip_tags($this->statePermit));
+        $this->taxid=htmlspecialchars(strip_tags($this->taxid));
+        $this->dba=htmlspecialchars(strip_tags($this->dba));
+        $this->operation=htmlspecialchars(strip_tags($this->operation));
+        $this->radius=htmlspecialchars(strip_tags($this->radius));
+        $this->mailAddress=htmlspecialchars(strip_tags($this->mailAddress));
+        $this->mailCity=htmlspecialchars(strip_tags($this->mailCity));
+        $this->mailState=htmlspecialchars(strip_tags($this->mailState));
+        $this->mailZip=htmlspecialchars(strip_tags($this->mailZip));
 
-        $this->name=htmlspecialchars(strip_tags($this->garageAddress));
-        $this->name=htmlspecialchars(strip_tags($this->garageCity));
-        $this->name=htmlspecialchars(strip_tags($this->garageState));
-        $this->name=htmlspecialchars(strip_tags($this->garageZip));
+        $this->garageAddress=htmlspecialchars(strip_tags($this->garageAddress));
+        $this->garageCity=htmlspecialchars(strip_tags($this->garageCity));
+        $this->garageState=htmlspecialchars(strip_tags($this->garageState));
+        $this->garageZip=htmlspecialchars(strip_tags($this->garageZip));
 
-        $this->name=htmlspecialchars(strip_tags($this->notes));
-        $this->name=htmlspecialchars(strip_tags($this->accountSource));
-        $this->name=htmlspecialchars(strip_tags($this->yearClient));
-        $this->name=htmlspecialchars(strip_tags($this->agent));
+        $this->notes=htmlspecialchars(strip_tags($this->notes));
+        $this->accountSource=htmlspecialchars(strip_tags($this->accountSource));
+        $this->yearClient=htmlspecialchars(strip_tags($this->yearClient));
+        $this->agent=htmlspecialchars(strip_tags($this->agent));
         
         // bind values
         $stmt->bindParam(":legalname", $this->legalname);
@@ -198,15 +198,109 @@ class Account{
     }
   
     function readOne() {
-        //query to select single account record
-        
+
+        $query = "SELECT 
+                    accountid, 
+                    accountStatus,
+                    accountStatus.account_status AS accountStatus_name,
+                    accountType,
+                    accountTypes.account_type AS accountType_name,
+                    usdot,
+                    statePermit,
+                    taxid,
+                    authority,
+                    legalname,
+                    dba,
+                    accounts.operation,
+                    operations.operation AS operation_name,
+                    accounts.radius,
+                    radius.radius AS radius_name,
+                    mailAddress,
+                    mailCity,
+                    (SELECT city FROM usstates WHERE id = mailCity LIMIT 1) AS mailCity_name,
+                    mailState,
+                    mailZip,
+                    garageAddress,
+                    garageCity,
+                    (SELECT city FROM usstates WHERE id = garageCity LIMIT 1) AS garageCity_name,
+                    garageState,
+                    garageZip,
+                    notes,
+                    accounts.accountSource,
+                    accountSources.accountSource AS source_name,
+                    yearClient,
+                    agent,
+                    CONCAT(agents.firstName,' ',agents.lastName) AS agent_name,
+                    accounts.created
+
+                    FROM agents 
+                        RIGHT JOIN (((((accountTypes 
+                            RIGHT JOIN (accountStatus 
+                                RIGHT JOIN accounts ON accountStatus.id = accounts.accountStatus) 
+                                    ON accountTypes.id = accounts.accountType) 
+                        LEFT JOIN accountSources ON accounts.accountSource = accountSources.id) 
+                        LEFT JOIN operations ON accounts.operation = operations.id) 
+                        LEFT JOIN radius ON accounts.radius = radius.id) 
+                        LEFT JOIN usstates ON (accounts.mailCity = usstates.id) AND (accounts.garageCity = usstates.id)) 
+                            ON agents.agentID = accounts.agent
+                    WHERE accounts.accountid =  :accountid ";
+
         //prepare the query statement
-        
-        //execute the query
-      
+            $stmt = $this->conn->prepare($query);
+
+        // bind accountid to be read
+            $stmt->bindParam(':accountid', $this->accountid);
+            
+        //execute query
+            $stmt->execute();
+
+            
+
         //get the retreived row
-      
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
         //set values to object properties
+            $this->accountStatus = $row['accountStatus']; 
+            $this->accountStatus_name = $row['accountStatus_name']; 
+            $this->accountType = $row['accountType']; 
+            $this->accountType_name = $row['accountType_name']; 
+            $this->usdot = $row['usdot']; 
+            $this->statePermit = $row['statePermit']; 
+            $this->taxid = $row['taxid']; 
+            $this->authority = $row['authority']; 
+            $this->legalname = $row['legalname']; 
+            $this->dba = $row['dba']; 
+            $this->operation = $row['operation']; 
+            $this->operation_name = $row['operation_name']; 
+
+            $this->radius = $row['radius']; 
+            $this->radius_name = $row['radius_name']; 
+
+            $this->mailAddress = $row['mailAddress']; 
+            $this->mailCity = $row['mailCity']; 
+            $this->mailCity_name = $row['mailCity_name']; 
+            $this->mailState = $row['mailState']; 
+            $this->mailZip = $row['mailZip']; 
+
+            $this->garageAddress = $row['garageAddress']; 
+            $this->garageCity = $row['garageCity']; 
+            $this->garageCity_name = $row['garageCity_name']; 
+            $this->garageState = $row['garageState']; 
+            $this->garageZip = $row['garageZip']; 
+
+            $this->notes = $row['notes']; 
+            $this->accountSource = $row['accountSource']; 
+            $this->source_name = $row['source_name']; 
+            $this->yearClient = $row['yearClient']; 
+            $this->agent = $row['agent']; 
+            $this->agent_name = $row['agent_name']; 
+            $this->created = $row['created']; 
+
+            $this->contacts = array();
+            $this->policies = array();
+            $this->drivers = array();
+            $this->vehicles = array();
+            $this->endorsements = array();
     }  
     
     function update() {

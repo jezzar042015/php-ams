@@ -17,7 +17,8 @@ $db = $database->getConnection();
 $account = New Account($db);
 
 //set the accountid of account object from GET
-$account->accountID = isset($_GET['accountid']) ? $_GET['accountid']: die();
+
+$account->accountid = isset($_GET['accountid']) ? $_GET['accountid']: die();
 
 // read the account using the accountID
 $account->readOne();
@@ -25,43 +26,45 @@ $account->readOne();
 if ($account->legalname != null) {
     //create array
     $account_arr = array(
-        "accountid"=> account->accountid,
-        "accountStatus"=> account->accountStatus,
-        "accountStatus_name"=> account->accountStatus_name,
-        "accountType"=> account->accountType,
-        "accountType_name"=> account->accountType_name,
-        "usdot"=> account->usdot,
-        "statePermit"=> account->statePermit,
-        "taxid"=> account->taxid,
-        "legalname"=> account->legalname,
-        "dba"=> account->dba,
-        "operation"=> account->operation,
-        "operation_name"=> account->operation_name,
-        "radius"=> account->radius,
-        "radius_name"=> account->radius_name,
-        "mailAddress"=> account->mailAddress,
-        "mailCity"=> account->mailCity,
-        "mailCity_name"=> account->mailCity_name,
-        "mailState"=> account->mailState,
-        "mailZip"=> account->mailZip,
-        "garageAddress"=> account->garageAddress,
-        "garageCity"=> account->garageCity,
-        "garageCity_name"=> account->garageCity_name,
-        "garageState"=> account->garageState,
-        "garageZip"=> account->garageZip,
-        "notes"=> account->notes,
-        "accountSource"=> account->accountSource,
-        "source_name"=> account->source_name,
-        "yearClient"=> account->yearClient,
-        "agent"=> account->agent,
-        "agent_name"=> account->agent_name,
-        "created"=> account->created,
+        "accountid" => $account->accountid,
+        "accountStatus" => $account->accountStatus,
+        "accountStatus_name" => $account->accountStatus_name,
+        "accountType"=> $account->accountType,
+        "accountType_name"=> $account->accountType_name,
+        "usdot"=> $account->usdot,
+        "statePermit"=> $account->statePermit,
+        "taxid"=> $account->taxid,
+        "legalname" => $account->legalname,
+        "dba"=> $account->dba,
+        "operation"=> $account->operation,
+        "operation_name"=> $account->operation_name,
+        "radius"=> $account->radius,
+        "radius_name"=> $account->radius_name,
+        "mailAddress"=> $account->mailAddress,
+        "mailCity"=> $account->mailCity,
+        "mailCity_name"=> $account->mailCity_name,
+        "mailState"=> $account->mailState,
+        "mailZip"=> $account->mailZip,
+        "garageAddress"=> $account->garageAddress,
+        "garageCity"=> $account->garageCity,
+        "garageCity_name"=> $account->garageCity_name,
+        "garageState"=> $account->garageState,
+        "garageZip"=> $account->garageZip,
 
-        "contacts"=> account->contacts,
-        "policies"=> account->policies,
-        "drivers"=> account->drivers,
-        "vehicles"=> account->vehicles,
-        "endorsements"=> account->endorsements
+
+        "notes"=> $account->notes,
+        "accountSource"=> $account->accountSource,
+        "source_name"=> $account->source_name,
+        "yearClient"=> $account->yearClient,
+        "agent"=> $account->agent,
+        "agent_name"=> $account->agent_name,
+        "created"=> $account->created,
+
+        "contacts"=> $account->contacts,
+        "policies"=> $account->policies,
+        "drivers"=> $account->drivers,
+        "vehicles"=> $account->vehicles,
+        "endorsements"=> $account->endorsements
     );
 
     // set response code 200 - OK

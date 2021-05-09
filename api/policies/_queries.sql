@@ -65,3 +65,8 @@ UPDATE policies SET otherfees = null WHERE otherfees = 0;
 UPDATE policies SET totalpremium = null WHERE totalpremium = 0;
 UPDATE policies SET commission = null WHERE commission = 0;
 UPDATE policies SET premiumfinancer = null WHERE premiumfinancer = 0;
+UPDATE policies SET agentsplit = NULL WHERE LENGTH(agentsplit) = 0;
+UPDATE policies SET policystate = NULL WHERE LENGTH(policystate) = 0;
+UPDATE policies SET premiumfinancer = NULL WHERE LENGTH(premiumfinancer) = 0;
+UPDATE policies SET pf_accountNo = NULL WHERE LENGTH(pf_accountNo) = 0;
+UPDATE policies SET notes = NULL WHERE LENGTH(notes) = 0;
