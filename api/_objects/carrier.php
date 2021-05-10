@@ -28,7 +28,35 @@ class Carrier {
     }
 
     function read() {
+        // create query
+        $query = 
+            "SELECT
+                carrierid,
+                carriername,
+                agencycode,
+                ambest_rating,
+                phones,
+                emails,
+                carr_address,
+                carr_city,
+                (SELECT city FROM usstates WHERE id = carr_city) AS carr_cityname,
+                carr_state,
+                carr_zip,
+                website,
+                notes,
+                created,
+                modified                
+            FROM carriers
+            ORDER BY carriername";
 
+        // prepare query
+        $stmt = $this->conn->prepare($query);
+
+        // execute query
+        $stmt->execute();
+
+        //return result
+        return $stmt;
     }
 
     function create() {
