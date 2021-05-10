@@ -31,7 +31,36 @@ class MGA {
     }
 
     function read() {
+        // create query
+        $query = 
+            "SELECT
+                mgaid,
+                mganame,
+                writingstate,
+                carriers,
+                phones,
+                emails,
+                mga_address,
+                mga_city,
+                (SELECT city FROM usstates WHERE id = mga_city) AS mga_cityname,
+                mga_state,
+                mga_zip,
+                website,
+                endtFees,
+                notes,
+                created,
+                modified            
+            FROM mgas
+            ORDER BY mganame;"
 
+        // prepare query
+        $stmt = $this->conn->prepare();
+
+        // execute query
+        $stmt->execute();
+
+        //return results
+        return $stmt;
     }
 
     function create() {
