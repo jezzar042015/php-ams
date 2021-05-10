@@ -119,7 +119,7 @@ class Carrier {
 
         return array(
             "message"=> "Insert failed",
-            "carriername" => $this->mganame,
+            "carriername" => $this->carriername,
             "status" => 400;
         );
     }
