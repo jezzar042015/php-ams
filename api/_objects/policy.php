@@ -334,17 +334,17 @@ class Policy{
         if ($stmt->execute()) {
             return array(
                 "message"=> "Insert successful",
-                "policyid" => $this->conn->lastInsertId(),
-                "policyNumber" => $this->policyNumber,
-                "coveragetype" => $this->coverageType,
-                "status" => 200;
+                "policyid"=> $this->conn->lastInsertId(),
+                "policyNumber"=> $this->policyNumber,
+                "coveragetype"=> $this->coverageType,
+                "status"=> 200
             );
         }
 
         return array(
             "message"=> "Insert failed",
             "policynumber" => $this->policyNumber,
-            "status" => 400;
+            "status" => 400
         );
     }
 
