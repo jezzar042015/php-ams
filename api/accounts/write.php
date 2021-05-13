@@ -50,7 +50,7 @@ if(
     $account->created = date('Y-m-d H:i:s');
   
     // register new account
-    $create_result = $account->create();
+    $create_result = $account->write();
 
     if($create_result > 0){
   

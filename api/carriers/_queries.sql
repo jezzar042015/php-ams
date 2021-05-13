@@ -19,7 +19,6 @@ CREATE TABLE IF NOT EXISTS carriers (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=19;
 
 UPDATE carriers SET ambest_rating = NULL WHERE LENGTH(ambest_rating) = 0;
-UPDATE carriers SET writingstate = NULL WHERE LENGTH(writingstate) = 0;
 UPDATE carriers SET agencycode = NULL WHERE LENGTH(agencycode) = 0;
 UPDATE carriers SET phones = NULL WHERE LENGTH(phones) = 0;
 UPDATE carriers SET emails = NULL WHERE LENGTH(emails) = 0;

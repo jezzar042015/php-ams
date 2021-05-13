@@ -109,7 +109,7 @@ class Account{
         return $stmt;
     }
     
-    function create() {
+    function write() {
         // query to insert record
         $query = "INSERT INTO accounts
                 SET

@@ -113,14 +113,14 @@ class Carrier {
                 "message"=> "Insert successful",
                 "carrierid" => $this->conn->lastInsertId(),
                 "carriername" => $this->carriername,
-                "status" => 200;
+                "status" => 200
             );
         }
 
         return array(
             "message"=> "Insert failed",
             "carriername" => $this->carriername,
-            "status" => 400;
+            "status" => 400
         );
     }
 

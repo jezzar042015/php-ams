@@ -33,7 +33,7 @@ class Driver {
   
   }
   
-  function create() {
+  function write() {
       //creating query
       $query = 
         "INSERT INTO drivers 
