@@ -126,6 +126,8 @@ class Policy{
                 created,
                 modified
             FROM policies ORDER BY effective DESC";
+        
+
 
         //prepare query statement
         $stmt = $this->conn->prepare($query);

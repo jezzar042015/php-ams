@@ -51,10 +51,10 @@ class MGA {
                 created,
                 modified            
             FROM mgas
-            ORDER BY mganame;"
+            ORDER BY mganame";
 
         // prepare query
-        $stmt = $this->conn->prepare();
+        $stmt = $this->conn->prepare($query);
 
         // execute query
         $stmt->execute();
@@ -119,14 +119,14 @@ class MGA {
                 "message"=> "Insert successful",
                 "mgaid" => $this->conn->lastInsertId(),
                 "mganame" => $this->mganame,
-                "status" => 200;
+                "status" => 200
             );
         }
 
         return array(
             "message"=> "Insert failed",
             "mganame" => $this->mganame,
-            "status" => 400;
+            "status" => 400
         );
 
     }
