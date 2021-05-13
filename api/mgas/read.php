@@ -22,7 +22,8 @@ if($num > 0) {
     //create mgas array
     $mgas_arr=array(
         "count"=> $num,
-        "mgas"=> array()
+        "mgas"=> array(),
+        "error" => false
     );
 
 
@@ -55,6 +56,15 @@ if($num > 0) {
     http_response_code(200);
 
     echo json_encode($mgas_arr);
+}
+
+else {
+    http_response_code(404);
+
+    echo json_encode(array(
+        "message" => "No mgas found",
+        "error" => true
+    ));
 }
 
 ?>
