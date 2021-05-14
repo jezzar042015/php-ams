@@ -21,6 +21,9 @@ CREATE TABLE IF NOT EXISTS contacts (
     PRIMARY KEY (contactid) 
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=19; 
 
+UPDATE contacts SET firstname = NULL WHERE LENGTH(firstname) = 0;
+UPDATE contacts SET middlename = NULL WHERE LENGTH(middlename) = 0;
+UPDATE contacts SET lastname = NULL WHERE LENGTH(lastname) = 0;
 UPDATE contacts SET business_phone = NULL WHERE LENGTH(business_phone) = 0;
 UPDATE contacts SET direct_phone = NULL WHERE LENGTH(direct_phone) = 0;
 UPDATE contacts SET mobile_phone = NULL WHERE LENGTH(mobile_phone) = 0;

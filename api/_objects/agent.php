@@ -1,6 +1,6 @@
 <?php
 
-class Agent() {
+class Agent {
 
     private $conn;
     private $table_name = "agents";
@@ -23,6 +23,49 @@ class Agent() {
 
     function read() {
 
+        $query = 
+            "SELECT 
+                agentID, 
+                isInactive, 
+                lastName, 
+                firstName, 
+                email, 
+                commSplit_new, 
+                commSplit_renew, 
+                brokerFeeSplit, 
+                created, 
+                modified 
+            FROM agents ORDER BY firstName";
+
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->execute();
+
+        return $stmt;
+    }
+
+    function readOne() {
+        $query = 
+            "SELECT 
+                agentID, 
+                isInactive, 
+                lastName, 
+                firstName, 
+                email, 
+                commSplit_new, 
+                commSplit_renew, 
+                brokerFeeSplit, 
+                created, 
+                modified 
+            FROM agents
+            WHERE agentid = :agentid 
+            ORDER BY firstName";
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':agentid', $this->agentid);
+        $stmt->execute();
+
+        return $stmt;
     }
 
     function write() {

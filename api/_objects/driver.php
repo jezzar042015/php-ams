@@ -30,9 +30,66 @@ class Driver {
   }
   
   function read() {
-  
+      $query = 
+        "SELECT 
+            driverid, 
+            firstname, 
+            middlename, 
+            lastname, 
+            hiredate, 
+            terminationdate, 
+            dob, 
+            cdl_state, 
+            cdl_number, 
+            year_licensed, 
+            phone, 
+            email, 
+            isOwnerOperator, 
+            accountid, 
+            notes, 
+            created, 
+            modified 
+        FROM drivers 
+        ORDER BY firstname, lastname";
+
+      $stmt = $this->conn->prepare($query);
+      $stmt->execute();
+
+      return $stmt;
+
   }
   
+  function read_byAccount() {
+    $query = 
+      "SELECT 
+          driverid, 
+          firstname, 
+          middlename, 
+          lastname, 
+          hiredate, 
+          terminationdate, 
+          dob, 
+          cdl_state, 
+          cdl_number, 
+          year_licensed, 
+          phone, 
+          email, 
+          isOwnerOperator, 
+          accountid, 
+          notes, 
+          created, 
+          modified 
+      FROM drivers 
+      WHERE accountid = :accountid 
+      ORDER BY firstname, lastname";
+
+    $stmt = $this->conn->prepare($query);
+    $stmt->bindParam(':accountid',$this->accountid);
+    $stmt->execute();
+    return $stmt;    
+
+  }
+
   function write() {
       //creating query
       $query = 
@@ -92,14 +149,14 @@ class Driver {
               "drivername"=>$this->firstname . " " . $this->lastname,
               "driverid"=>$this->driverid,
               "status"=>"200"
-          )
-      }
-      else {
+          );
+
+      } else {
           return array(
               "message"=>"Driver insert was failed",
               "drivername"=>$this->firstname . " " . $this->lastname,
               "status"=>"400"
-        
+            );
       }  
   }
             

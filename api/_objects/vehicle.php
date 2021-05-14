@@ -29,6 +29,58 @@ class Vehicle {
   }
   
   function read() {
+      $query = 
+          "SELECT 
+              vehicleid, 
+              vin, 
+              vehicle_year, 
+              makeid, 
+              typeid, 
+              model, 
+              unit_number, 
+              pdvalue, 
+              driverid, 
+              lienholder, 
+              accountid, 
+              notes, 
+              created, 
+              modified 
+            FROM vehicles ";
+
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->execute();
+
+        return $stmt;
+
   }
+
+  function read_byAccount() {
+    $query = 
+        "SELECT 
+            vehicleid, 
+            vin, 
+            vehicle_year, 
+            makeid, 
+            typeid, 
+            model, 
+            unit_number, 
+            pdvalue, 
+            driverid, 
+            lienholder, 
+            accountid, 
+            notes, 
+            created, 
+            modified  
+        FROM vehicles 
+        WHERE accountid = :accountid";
+
+  $stmt = $this->conn->prepare($query);
+  $stmt->bindParam(':accountid',$this->accountid);  
+  $stmt->execute();
+
+  return $stmt;    
+  }
+
 }
 ?>

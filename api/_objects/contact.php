@@ -26,9 +26,64 @@ class Contact {
   }
   
   function read() {
-  
+      $query = 
+        "SELECT 
+          contactid, 
+          firstname, 
+          middlename, 
+          lastname, 
+          title, 
+          business_phone, 
+          direct_phone, 
+          mobile_phone, 
+          email1, 
+          email2, 
+          accountid, 
+          notes, 
+          created, 
+          modified 
+        FROM contacts 
+        ORDER BY firstname, lastname";  
+
+      $stmt = $this->conn->prepare($query);
+
+      $stmt->execute();
+
+      return $stmt;
   }
   
+  function readOne() {
+  
+  }
+
+  function read_byAccount() {
+    $query = 
+      "SELECT 
+        contactid, 
+        firstname, 
+        middlename, 
+        lastname, 
+        title, 
+        business_phone, 
+        direct_phone, 
+        mobile_phone, 
+        email1, 
+        email2, 
+        accountid, 
+        notes, 
+        created, 
+        modified 
+      FROM contacts
+      WHERE accountid = :accountid 
+      ORDER BY firstname, lastname";  
+
+      $stmt = $this->conn->prepare($query);
+      $stmt->bindParam(':accountid',$this->accountid);
+      $stmt->execute();
+
+      return $stmt;  
+  }
+
   function create() {
   
   }
