@@ -27,3 +27,5 @@ UPDATE vehicles SET unit_number = NULL WHERE LENGTH(unit_number) = 0;
 UPDATE vehicles SET pdvalue = null WHERE pdvalue = 0;
 UPDATE vehicles SET lienholder = null WHERE lienholder = 0;
 UPDATE vehicles SET notes = NULL WHERE LENGTH(notes) = 0;
+
+UPDATE vehicles SET vin = NULL WHERE makeid = 14;
