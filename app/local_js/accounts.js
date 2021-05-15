@@ -69,3 +69,6 @@ function loadAccountSelect(accountID) {
     document.getElementById('notes').value = acc.notes;  
 }
 
+document.getElementById("account-search").addEventListener('keyup', function() {
+//    var acclist = document.getElementById(); 
+});
