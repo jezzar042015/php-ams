@@ -32,7 +32,7 @@ function loadAccountsList(accountsToLoad) {
     for(let i = 0; i<accountsToLoad.length; i++) {
         acclist += 
             '<li onclick="loadAccountSelect('+ accountsToLoad[i].accountid 
-            + ')" id="' + accountsToLoad[i].accountid +'">' 
+            + ')" id="' + accountsToLoad[i].accountid +'" class="accounts-option-list">' 
             + accountsToLoad[i].legalname + '</li>';
     }    
 
@@ -70,5 +70,27 @@ function loadAccountSelect(accountID) {
 }
 
 document.getElementById("account-search").addEventListener('keyup', function() {
-//    var acclist = document.getElementById(); 
+    var keyword =  document.getElementById("account-search").value;
+
+    filterAccountsList(keyword.toLowerCase());
 });
+
+
+function filterAccountsList(keyword) {
+    var listColl = document.getElementsByClassName("accounts-option-list");
+
+    console.log(keyword);
+
+    for ( let i = 0; i < listColl.length ; i++) {
+        
+        var listContent =  listColl[i].textContent;
+
+        if (listContent.toLowerCase().indexOf(keyword) > -1) {
+            listColl[i].style.display = "";
+        } else {
+            listColl[i].style.display = "none";
+        }
+    }
+    
+
+}
