@@ -45,11 +45,11 @@ body {
 #account-search {
     display: block;
     width: 90%;
-    height: 26px;
+    height: 27px;
     border: none;
     margin-left: 10px;
     margin-right: 10px;
-    margin-top: 5px;
+    margin-top: 3px;
     padding-left: 8px;
     outline: none;
 }
@@ -150,6 +150,8 @@ body {
     grid-template-rows: 25px auto 60px;
 }
 
+
+
 #contact-section-header {
     grid-column: 1 / span 1;
     grid-row: 1 / span 1;    
@@ -198,14 +200,38 @@ body {
     margin: 0px 8px 8px 8px;
     border-radius: 3px;
 
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 25px auto;
 }
+
+.drivers-col-name {width:250px;}
+.drivers-col-state {width:60px;}
+.drivers-col-cdlnumber{width:110px;}
+.drivers-col-year{width:60px;}
+.drivers-col-hired{width:100px;}
+.drivers-col-terminated{width: 100px;}
+
 #account-vehicles {
     background-color: rgba(238, 236, 236, 0.884);
     grid-column: 2;
 
     margin: 0px 8px 8px 0px;
     border-radius: 3px;
+
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 25px auto;
 }
+
+.vehicles-col-year{width:50px;}
+.vehicles-col-make{width:100px;}
+.vehicles-col-vin{width:160px;}
+.vehicles-col-unit{width:60px;}
+.vehicles-col-type{width:80px;}
+.vehicles-col-value{width:90px;}
+.vehicles-col-driver{width:20px;}
+
 #account-policies {
     background-color: rgba(238, 236, 236, 0.884);
     grid-column: 1 / span 2;
@@ -334,7 +360,7 @@ td {
 
 table {
     width: auto;
-    height: 95px;
+    
     border-collapse: collapse;
     margin-left: 15px;
     margin-right: 10px;
@@ -346,6 +372,14 @@ table {
 
     overflow-y: auto;
     overflow-x: hidden;
+}
+
+#contacts-list-table {
+    height: 95px;
+}
+
+#drivers-list-table, #vehicles-list-table {
+    height: 155px;
 }
 
 th {
@@ -378,6 +412,7 @@ td {
 .contacts-col-email {
     width: 250px;
 }
+
 
 
 /* width */
