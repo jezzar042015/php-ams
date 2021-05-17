@@ -168,12 +168,72 @@
 
             <!-- policies section -->
             <div id="account-policies">
-                <p class="section-names">POLICIES</p>
+                <div id="policies-section-header">
+                    <p class="section-names">POLICIES</p>
+                </div>
+                <div id="policies-list-containter">
+                    <table class="ace-tables" id="policies-list-table">
+                        <!--                         
+                        <tr>
+                            <th class="policies-col-type">Coverage Type</th>
+                            <th class="policies-col-effective">Effective</th>
+                            <th class="policies-col-expiration">Expiration</th>
+                            <th class="policies-col-carrier">Carrier</th>
+                            <th class="policies-col-mga">MGA</th>
+                            <th class="policies-col-policyno">Policy Number</th>
+                            <th class="policies-col-prem_initial">Initial Premium</th>
+                            <th class="policies-col-prem_current">Current Premium</th>
+                            <th class="policies-col-actions"></th>
+                        </tr>  
+                        -->
+                        <!-- 
+                        <tr>
+                            <td class="policies-col-type">Auto Liabilty</td>
+                            <td class="policies-col-effective">0000-00-00</td>
+                            <td class="policies-col-expiration">0000-00-00</td>
+                            <td class="policies-col-carrier">Knight Specialty Insurance Corporation</td>
+                            <td class="policies-col-mga">Brazos Specialty Risk Inc</td>
+                            <td class="policies-col-policyno">KSI000193-00</td>
+                            <td class="policies-col-prem_initial">50,000.00</td>
+                            <td class="policies-col-prem_current">50,500.00</td>
+                            <td class="policies-col-actions"></td>
+                        </tr>
+                         -->
+                    </table>
+                </div>
             </div>
 
             <!-- endorsements section -->
             <div id="account-endts">
-                <p class="section-names">ENDORSEMENTS</p>
+                <div id="endorsments-section-header">
+                    <p class="section-names">ENDORSEMENTS</p>
+                </div>
+                <div id="endorsements-list-containter">
+                    <table class="ace-tables" id="endorsements-list-table">
+                        
+                        <tr>
+                            <th class="endts-col-type">Effective</th>
+                            <th class="endts-col-effective">Description</th>
+                            <th class="endts-col-expiration">Action</th>
+                            <th class="endts-col-carrier">Year</th>
+                            <th class="endts-col-mga">Make</th>
+                            <th class="endts-col-policyno">VIN</th>
+                            <th class="endts-col-prem_initial">PD Value</th>
+                            <th class="endts-col-prem_current">Surcharge</th>
+                            <th class="endts-col-prem_current">AL</th>
+                            <th class="endts-col-prem_current">MTC</th>
+                            <th class="endts-col-prem_current">APD</th>
+                            <th class="endts-col-prem_current">Broker Fees</th>
+                            <th class="endts-col-prem_current">Endt Fees</th>
+                            <th class="endts-col-prem_current">Total Amount</th>
+                            <th class="endts-col-prem_current">Status</th>
+                            <th class="endts-col-prem_current">Variance</th>
+                            <th class="endts-col-actions"></th>
+                        </tr>
+
+                    </table>
+                </div>
+                
             </div>
         </div>
         
@@ -184,6 +244,7 @@
     </div>
 </body>
 <script src="app/local_js/accounts.js"></script>
+<script src="app/local_js/formatting.js"></script>
 
 <script src="https://kit.fontawesome.com/209b70da2c.js" crossorigin="anonymous"></script>
 </html>

@@ -121,11 +121,13 @@ class Policy{
                 policystate,
                 premiumfinancer,
                 pf_accountNo,
-                notes,
+                p.notes,
                 onInceptionStage,
-                created,
-                modified
-            FROM policies ORDER BY effective DESC";
+                p.created,
+                p.modified
+
+                
+            FROM policies AS p ORDER BY effective DESC";
         
 
 
@@ -150,13 +152,13 @@ class Policy{
                 policyID,
                 policyNumber,
                 accountID,
-                
-                mgaID,
-               
-                carrierID,
-                
+                null AS legalname,
+                p.mgaID,
+                mganame,
+                p.carrierID,
+                carriername,
                 coverageType,
-                
+                coveragetypename,
                 bindDate,
                 effective,
                 expiration,
@@ -187,15 +189,30 @@ class Policy{
                 premiumfinancer,
                 
                 pf_accountNo,
-                notes,
+                p.notes,
                 onInceptionStage,
-                created,
-                modified
+                p.created,
+                p.modified,
 
-            FROM policies 
-            
+                (IFNULL((
+                    SELECT SUM(e.premium) 
+                    FROM endorsements AS e
+                    WHERE e.policyid = p.policyid AND e.stage = 0
+                ),0) + IFNULL(premium,0))  AS initial_premium,
+                
+                (IFNULL((
+                    SELECT SUM(e.premium) 
+                    FROM endorsements AS e
+                    WHERE e.policyid = p.policyid 
+                ),0) + IFNULL(premium,0)) AS cummulative_premium
+
+            FROM ((policies AS p 
+                    LEFT JOIN coveragetypes AS c ON p.coverageType = c.typeid)
+                    LEFT JOIN mgas AS m ON p.mgaID = m.mgaid)
+                    LEFT JOIN carriers AS i ON p.carrierid = i.carrierid
+
             WHERE accountid = :accountid
-            ORDER BY effective DESC";
+            ORDER BY effective DESC, p.coverageType";
 
             //JOINED TABLES
             // policies, accounts, agents, mgas, carriers, banks
