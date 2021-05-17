@@ -116,12 +116,18 @@ ORDER BY v.typeid;
 
 -- get the list of endt groups
 SELECT
-	effective, endt_action, endt_type, endt_description,vehicleid,driverid,lineID
-FROM (SELECT MAX(effective) as effective, MAX(endt_action) as endt_action, MAX(endt_type) as endt_type, MAX(vehicleid) as vehicleid, MAX(driverid) as driverid,
-	CONCAT(MAX(effective),'|',MAX(endt_action),'|',MAX(endt_type),'|',(IFNULL(MAX(driverid),0) + IFNULL(MAX(vehicleid),0)),'|',MAX(accountid)) AS lineID,
-    MAX(endt_description) as endt_description
+	effective, stage, endt_action, endt_type, endt_description, vehicleid, driverid
+FROM (SELECT 
+		MAX(effective) as effective, 
+        MAX(endt_action) as endt_action, 
+        MAX(endt_type) as endt_type, 
+        MAX(vehicleid) as vehicleid, 
+        MAX(driverid) as driverid,
+        MAX(endt_description) as endt_description,
+        MAX(stage) as stage
+		-- CONCAT(MAX(effective),'|',MAX(endt_action),'|',MAX(endt_type),'|',(IFNULL(MAX(driverid),0) + IFNULL(MAX(vehicleid),0)),'|',MAX(accountid)) AS lineID,
 FROM endorsements
-WHERE accountid = 35
-GROUP BY CONCAT(effective,'|',endt_action,'|',endt_type,'|',(IFNULL(driverid,0) + IFNULL(vehicleid,0)))
-order by effective desc) as eg
+WHERE accountid = 34
+GROUP BY CONCAT(effective,'|',endt_action,'|',endt_type,'|',(IFNULL(driverid,0) + IFNULL(vehicleid,0)),'|',accountid)
+ORDER BY effective DESC, stage DESC, endt_type) as eg
 ;
