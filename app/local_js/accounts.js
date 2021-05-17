@@ -73,6 +73,7 @@ function loadAccountSelect(accountID) {
     loadAccountContacts (accountID);
     loadAccountDrivers (accountID);
     loadAccountVehicles (accountID);
+    loadAccountPolicies (accountID);
 }
 
 document.getElementById("account-search").addEventListener('keyup', function() {
@@ -108,6 +109,7 @@ function loadAccountContacts(accountid) {
             '<th class="contacts-col-title">Title</th>' +
             '<th class="contacts-col-mobile">Mobile</th>' +
             '<th class="contacts-col-email">Email</th>' +
+            '<th class="contacts-col-actions"></th>' +
         '</tr>';
 
     xhr.open('GET','http://localhost/php-ams/api/contacts/read.php?accountid=' + accountid ,true);
@@ -126,6 +128,7 @@ function loadAccountContacts(accountid) {
                     '<td>' + contacts.contacts[i].title + '</td>' +
                     '<td>' + contacts.contacts[i].business_phone + '</td>' +
                     '<td>' + contacts.contacts[i].email1.toLowerCase() + '</td>' +
+                    '<td></td>' +
                 '</tr>'
             }
             
@@ -149,6 +152,7 @@ function loadAccountDrivers (accountid) {
             '<th class="drivers-col-year">Year</th>' +
             '<th class="drivers-col-hired">Hired</th>' +
             '<th class="drivers-col-terminated">Terminated</th>' +
+            '<th class="drivers-col-actions"></th>' +
         '</tr>';   
 
     xhr.open('GET','http://localhost/php-ams/api/drivers/read.php?accountid=' + accountid ,true);
@@ -176,6 +180,7 @@ function loadAccountDrivers (accountid) {
                         '<td>' + license_year + '</td>' +
                         '<td>' + hired + '</td>' +
                         '<td>' + terminated + '</td>' +
+                        '<td></td>' +
                     '</tr>';
 
             }
@@ -200,6 +205,7 @@ function loadAccountVehicles (accountid) {
             '<th class="vehicles-col-type">Type</th>' +
             '<th class="vehicles-col-value">Value</th>' +
             '<th class="vehicles-col-driver">Driver</th>' +
+            '<th class="vehicles-col-actions"></th>' +
         '</tr>';
 
         xhr.open('GET','http://localhost/php-ams/api/vehicles/read.php?accountid=' + accountid ,true);
@@ -217,32 +223,26 @@ function loadAccountVehicles (accountid) {
                     
                     var veh_year =  
                         (vehicles.vehicles[i].vehicle_year == null) ? '' : vehicles.vehicles[i].vehicle_year;
-                    var veh_make = (vehicles.vehicles[i].makeid == 14) ? 'Unidentified' : '';
+                    var veh_make = 
+                        (vehicles.vehicles[i].makename == null) ? '' : vehicles.vehicles[i].makename;
 
                     var veh_vin = (vehicles.vehicles[i].vin == null) ? '' : vehicles.vehicles[i].vin;
 
                     var veh_unit = (vehicles.vehicles[i].unit_number == null) ? '' : vehicles.vehicles[i].unit_number;
-                    var veh_type = (vehicles.vehicles[i].typeid == null) ? '' : vehicles.vehicles[i].typeid;
-                    var veh_value = (vehicles.vehicles[i].pdvalue == null) ? '' : vehicles.vehicles[i].pdvalue;
-                    var veh_driver = (vehicles.vehicles[i].driverid == null) ? '' : vehicles.vehicles[i].driverid;
-
-                    // veh_year = '';
-                    // veh_make = '';
-                    // veh_vin = '';
-                    // veh_unit = '';
-                    // veh_type = '';
-                    // veh_value = '';
-                    // veh_driver = '';
+                    var veh_type = (vehicles.vehicles[i].typename == null) ? '' : vehicles.vehicles[i].typename;
+                    var veh_value = (vehicles.vehicles[i].pdvalue == null) ? '' : CommaFormatted(vehicles.vehicles[i].pdvalue,0);
+                    var veh_driver = (vehicles.vehicles[i].drivername == null) ? '' : vehicles.vehicles[i].drivername;
 
                     vehiclesList += 
                         '<tr>' + 
-                            '<td>' + veh_year + '</td>' +
-                            '<td>' + veh_make + '</td>' +
-                            '<td>' + veh_vin + '</td>' +
-                            '<td>' + veh_unit + '</td>' +
-                            '<td>' + veh_type + '</td>' +
-                            '<td>' + veh_value + '</td>' +
-                            '<td>' + veh_driver + '</td>' +
+                            '<td class="vehicles-col-year">' + veh_year + '</td>' +
+                            '<td class="vehicles-col-make">' + veh_make + '</td>' +
+                            '<td class="vehicles-col-vin">' + veh_vin + '</td>' +
+                            '<td class="vehicles-col-unit">' + veh_unit + '</td>' +
+                            '<td class="vehicles-col-type">' + veh_type + '</td>' +
+                            '<td class="vehicles-col-value">' + veh_value + '</td>' +
+                            '<td class="vehicles-col-driver">' + veh_driver + '</td>' +
+                            '<td class="vehicles-col-actions"></td>' +
                         '</tr>';
                 }
 
@@ -254,4 +254,61 @@ function loadAccountVehicles (accountid) {
 
         xhr.send();   
   
+}
+
+function loadAccountPolicies (accountid) {
+    var xhr = new XMLHttpRequest();
+    var policies;
+    var policiesList = 
+        '<tr>' +
+        '<th class="policies-col-type">Coverage Type</th> ' +
+        '<th class="policies-col-effective">Effective</th> ' +
+        '<th class="policies-col-expiration">Expiration</th> ' +
+        '<th class="policies-col-carrier">Carrier</th> ' +
+        '<th class="policies-col-mga">MGA</th> ' +
+        '<th class="policies-col-policyno">Policy Number</th> ' +
+        '<th class="policies-col-prem_initial">Initial Premium</th> ' +
+        '<th class="policies-col-prem_current">Current Premium</th> ' +
+        '<th class="policies-col-actions"></th> ' +
+        '</tr>';
+        
+    xhr.open('GET','http://localhost/php-ams/api/policies/read.php?accountid=' + accountid ,true);
+
+    xhr.onload = function () {
+
+        if (this.status == 200) {
+            policies = JSON.parse(xhr.responseText);
+            
+            for (let i = 0; i < policies.policies.length; i++) {
+                
+                var coverage_type = (policies.policies[i].coveragetype_name == null) ? '' : policies.policies[i].coveragetype_name;  
+                var effective = (policies.policies[i].effective == null) ? '' : policies.policies[i].effective;  
+                var expiration = (policies.policies[i].expiration == null) ? '' : policies.policies[i].expiration;
+                var carrier = (policies.policies[i].carriername == null) ? '' : policies.policies[i].carriername;
+                var mga = (policies.policies[i].mganame == null) ? '' : policies.policies[i].mganame;
+                var policyno = (policies.policies[i].policyNumber == null) ? '' : policies.policies[i].policyNumber;
+                var prem_initial = (policies.policies[i].initial_premium == null) ? '' : policies.policies[i].initial_premium;
+                var prem_current = (policies.policies[i].cummulative_premium == null) ? '' : policies.policies[i].cummulative_premium;
+
+                
+
+                policiesList += 
+                    '<tr>' +
+                    '<td class="policies-col-type">' + coverage_type +'</td>' +
+                    '<td class="policies-col-effective">' + effective +'</td>' +
+                    '<td class="policies-col-expiration">' + expiration +'</td>' +
+                    '<td class="policies-col-carrier">' + carrier +'</td>' +
+                    '<td class="policies-col-mga">' + mga +'</td>' +
+                    '<td class="policies-col-policyno">' + policyno +'</td>' +
+                    '<td class="policies-col-prem_initial">' + CommaFormatted(prem_initial,2) +'</td>' +
+                    '<td class="policies-col-prem_current">' + CommaFormatted(prem_current,2) +'</td>' +
+                    '<td class="policies-col-actions"></td>' +
+                    '</tr>';
+            }
+        }
+
+        document.getElementById('policies-list-table').innerHTML = policiesList;
+    }
+
+    xhr.send();   
 }

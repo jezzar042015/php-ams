@@ -34,18 +34,25 @@ class Vehicle {
               vehicleid, 
               vin, 
               vehicle_year, 
-              makeid, 
-              typeid, 
+              v.makeid, 
+              makename,
+              v.typeid,
+              typename, 
               model, 
               unit_number, 
               pdvalue, 
-              driverid, 
+              v.driverid, 
+              CONCAT(d.firstname,' ',d.lastname) AS drivername, 
               lienholder, 
-              accountid, 
+              v.accountid, 
               notes, 
               created, 
               modified 
-            FROM vehicles ";
+              FROM ((vehicles AS v 
+                  LEFT JOIN vehiclemakes AS m ON v.makeid = m.makeid)
+                  LEFT JOIN vehicletypes AS t ON v.typeid = t.typeid)
+                  LEFT JOIN drivers AS d ON v.driverid = d.driverid  
+            ORDER BY v.typeid";
 
         $stmt = $this->conn->prepare($query);
 
@@ -61,19 +68,26 @@ class Vehicle {
             vehicleid, 
             vin, 
             vehicle_year, 
-            makeid, 
-            typeid, 
+            v.makeid,
+            makename, 
+            v.typeid,
+            typename, 
             model, 
             unit_number, 
             pdvalue, 
-            driverid, 
+            v.driverid, 
+            CONCAT(d.firstname,' ',d.lastname) AS drivername, 
             lienholder, 
-            accountid, 
-            notes, 
-            created, 
-            modified  
-        FROM vehicles 
-        WHERE accountid = :accountid";
+            v.accountid, 
+            v.notes, 
+            v.created, 
+            v.modified  
+        FROM ((vehicles AS v 
+            LEFT JOIN vehiclemakes AS m ON v.makeid = m.makeid)
+            LEFT JOIN vehicletypes AS t ON v.typeid = t.typeid)
+            LEFT JOIN drivers AS d ON v.driverid = d.driverid
+        WHERE v.accountid = :accountid
+        ORDER BY v.typeid, makename";
 
   $stmt = $this->conn->prepare($query);
   $stmt->bindParam(':accountid',$this->accountid);  
