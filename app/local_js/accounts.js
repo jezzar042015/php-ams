@@ -74,6 +74,7 @@ function loadAccountSelect(accountID) {
     loadAccountDrivers (accountID);
     loadAccountVehicles (accountID);
     loadAccountPolicies (accountID);
+    loadAccountEndorsements (accountID);
 }
 
 document.getElementById("account-search").addEventListener('keyup', function() {
@@ -174,13 +175,13 @@ function loadAccountDrivers (accountid) {
 
                 driversList += 
                     '<tr>' +
-                        '<td>' + drivername + '</td>' +
-                        '<td>' + driver_state + '</td>' +
-                        '<td>' + driver_license + '</td>' +
-                        '<td>' + license_year + '</td>' +
-                        '<td>' + hired + '</td>' +
-                        '<td>' + terminated + '</td>' +
-                        '<td></td>' +
+                        '<td class="drivers-col-name">' + drivername + '</td>' +
+                        '<td class="drivers-col-state">' + driver_state + '</td>' +
+                        '<td class="drivers-col-cdlnumber">' + driver_license + '</td>' +
+                        '<td class="drivers-col-year">' + license_year + '</td>' +
+                        '<td class="drivers-col-hired">' + hired + '</td>' +
+                        '<td class="drivers-col-terminated">' + terminated + '</td>' +
+                        '<td class="drivers-col-actions"></td>' +
                     '</tr>';
 
             }
@@ -286,6 +287,11 @@ function loadAccountPolicies (accountid) {
                 var expiration = (policies.policies[i].expiration == null) ? '' : policies.policies[i].expiration;
                 var carrier = (policies.policies[i].carriername == null) ? '' : policies.policies[i].carriername;
                 var mga = (policies.policies[i].mganame == null) ? '' : policies.policies[i].mganame;
+                
+                if (mga != null && mga.indexOf('(') > 0) {
+                    mga = mga.substring(0,mga.indexOf('('))
+                }                
+                
                 var policyno = (policies.policies[i].policyNumber == null) ? '' : policies.policies[i].policyNumber;
                 var prem_initial = (policies.policies[i].initial_premium == null) ? '' : policies.policies[i].initial_premium;
                 var prem_current = (policies.policies[i].cummulative_premium == null) ? '' : policies.policies[i].cummulative_premium;
@@ -311,4 +317,112 @@ function loadAccountPolicies (accountid) {
     }
 
     xhr.send();   
+}
+
+
+function loadAccountEndorsements (accountid) {
+    var xhr = new XMLHttpRequest();
+    var endts;
+    var endtList = 
+        '<tr>' +
+        '<th class="endts-col-effective">Effective</th>' +
+        '<th class="endts-col-action">Action</th>' +
+        '<th class="endts-col-description">Description</th>' +
+        '<th class="endts-col-year">Year</th>' +
+        '<th class="endts-col-make">Make</th>' +
+        '<th class="endts-col-vin">VIN</th>' +
+        '<th class="endts-col-pdvalue">PD Value</th>' +
+        '<th class="endts-col-surcharge">Surcharge</th>' +
+        '<th class="endts-col-al_premium">AL</th>' +
+        '<th class="endts-col-mtc_premium">MTC</th>' +
+        '<th class="endts-col-pd_premium">APD</th>' +
+        '<th class="endts-col-brokerfees">Broker Fees</th>' +
+        '<th class="endts-col-endtfees">Endt Fees</th>' +
+        '<th class="endts-col-otherfees">Other Fees</th>' +
+        '<th class="endts-col-totalpremium">Total Amount</th>' +
+        '<th class="endts-col-status">Status</th>' +
+        '<th class="endts-col-variance">Variance</th>' +
+        '<th class="endts-col-actions"></th>' +
+        '</tr>';
+
+    xhr.open('GET','http://localhost/php-ams/api/group_endts/read.php?accountid=' + accountid ,true);
+
+    xhr.onload = function () {
+        
+        if (this.status == 200) {
+
+            // console.log(xhr.responseText);
+
+            endts = JSON.parse(xhr.responseText);
+
+            for (let i = 0; i < endts.count; i++) {
+                
+                var effective = (endts.grp_endts[i].effective == null) ? '' : endts.grp_endts[i].effective;  
+                var action = endts.grp_endts[i].action_name;
+                var description = (endts.grp_endts[i].endt_description == null) ? '' : endts.grp_endts[i].endt_description;  
+                var year = (endts.grp_endts[i].vehicle_year == null) ? '' : endts.grp_endts[i].vehicle_year;  
+                var make = (endts.grp_endts[i].makename == null) ? '' : endts.grp_endts[i].makename;  
+                var vin = (endts.grp_endts[i].vin == null) ? '' : endts.grp_endts[i].vin;  
+                
+                var pdvalue = 
+                    (endts.grp_endts[i].pdvalue == null || endts.grp_endts[i].pdvalue == 0) 
+                    ? '' :  CommaFormatted(endts.grp_endts[i].pdvalue,0);  
+                
+                var surcharge = 
+                    (endts.grp_endts[i].surcharge == null || endts.grp_endts[i].surcharge == 0) 
+                    ? '' :  CommaFormatted(endts.grp_endts[i].surcharge,2);  
+
+                var al_premium = 
+                    (endts.grp_endts[i].al_premium == null || endts.grp_endts[i].al_premium == 0) 
+                    ? '' :  CommaFormatted(endts.grp_endts[i].al_premium,2);
+
+                var mtc_premium = 
+                    (endts.grp_endts[i].mtc_premium == null || endts.grp_endts[i].mtc_premium == 0) 
+                    ? '' :  CommaFormatted(endts.grp_endts[i].mtc_premium,2);
+
+                var pd_premium = (endts.grp_endts[i].pd_premium == null || endts.grp_endts[i].pd_premium == 0) 
+                    ? '' :  CommaFormatted(endts.grp_endts[i].pd_premium,2);
+                
+                var brokerfees = (endts.grp_endts[i].brokerfees == null || endts.grp_endts[i].brokerfees == 0) 
+                    ? '' :  CommaFormatted(endts.grp_endts[i].brokerfees,2);
+
+                var endtfees = (endts.grp_endts[i].endtfees == null || endts.grp_endts[i].endtfees == 0) 
+                    ? '' :  CommaFormatted(endts.grp_endts[i].endtfees,2);
+
+                var otherfees = (endts.grp_endts[i].otherfees == null || endts.grp_endts[i].otherfees == 0) 
+                    ? '' :  CommaFormatted(endts.grp_endts[i].otherfees,2);
+
+                var totalpremium = (endts.grp_endts[i].totalpremium == null || endts.grp_endts[i].totalpremium == 0) 
+                    ? '' :  CommaFormatted(endts.grp_endts[i].totalpremium,2);
+
+                endtList += 
+                    '<tr>' +
+                    '<td class="endts-col-effective">' + effective +'</td>' +
+                    '<td class="endts-col-action">' + action +'</td>' +
+                    '<td class="endts-col-description">' + description +'</td>' +
+                    '<td class="endts-col-year">' + year +'</td>' +
+                    '<td class="endts-col-make">' + make +'</td>' +
+                    '<td class="endts-col-vin">' + vin +'</td>' +
+                    '<td class="endts-col-pdvalue">' + pdvalue +'</td>' +
+                    '<td class="endts-col-surcharge">' + surcharge +'</td>' +
+                    '<td class="endts-col-al_premium">' + al_premium +'</td>' +
+                    '<td class="endts-col-mtc_premium">' + mtc_premium +'</td>' +
+                    '<td class="endts-col-pd_premium">' + pd_premium +'</td>' +
+                    '<td class="endts-col-brokerfees">' + brokerfees +'</td>' +
+                    '<td class="endts-col-endtfees">' + endtfees +'</td>' +
+                    '<td class="endts-col-otherfees">' + otherfees +'</td>' +
+                    '<td class="endts-col-totalpremium">' + totalpremium +'</td>' +
+                    '<td class="endts-col-status">' + '' +'</td>' +
+                    '<td class="endts-col-variance">' + '' +'</td>' +
+                    '<td class="endts-col-actions"></td>' +
+                    '</tr>';
+
+            }
+        }
+
+        document.getElementById('endorsements-list-table').innerHTML = endtList;
+    }
+
+    xhr.send();
+
 }

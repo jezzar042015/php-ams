@@ -108,7 +108,7 @@ body {
     margin: 0px 2.5px 0px 15px ;
     
     height: 14px;
-    font-size: 14px;
+    font-size: 13px;
     width: auto;
 
 }
@@ -206,7 +206,9 @@ body {
     grid-template-rows: 25px auto;
 }
 
-.drivers-col-name {width:250px;}
+.drivers-col-name {
+    width:250px; 
+    padding-left: 5px;}
 .drivers-col-state {width:60px;}
 .drivers-col-cdlnumber{width:110px;}
 .drivers-col-year{width:60px;}
@@ -226,7 +228,9 @@ body {
     grid-template-rows: 25px auto;
 }
 
-.vehicles-col-year{width:50px;}
+.vehicles-col-year{
+    width:50px;
+    padding-left: 5px;}
 .vehicles-col-make{width:110px;}
 .vehicles-col-vin{width:160px;}
 .vehicles-col-unit{width:40px;}
@@ -254,12 +258,15 @@ body {
     grid-template-rows: 25px auto;
 }
 
-.policies-col-type {width:180px;}
+.policies-col-type {
+    width:180px; 
+    padding-left: 5px;}
 .policies-col-effective {width:120px;}
 .policies-col-expiration {width:120px;}
 .policies-col-carrier {width:350px;}
 .policies-col-mga {width:350px;}
 .policies-col-policyno {width:175px;}
+.policies-col-policyno td{color: rgb(12, 116, 12);}
 .policies-col-prem_initial {
     width:200px;
     text-align: right;
@@ -282,6 +289,64 @@ body {
     grid-template-columns: auto;
     grid-template-rows: 25px auto;
 }
+
+.endts-col-effective{width:85px; padding-left: 5px;}
+.endts-col-action{width:55px;}
+.endts-col-description{
+    width:250px;
+    padding-right: 8px;
+}
+.endts-col-year{width:40px;}
+.endts-col-make{width:100px;}
+.endts-col-vin{width:150px;}
+.endts-col-pdvalue{
+    width:70px;
+    text-align: right;
+}
+.endts-col-surcharge{
+    width:80px;
+    padding-left: 10px;
+}
+.endts-col-al_premium{
+    width:80px;
+    text-align: right;
+    padding-right: 10px;
+}
+.endts-col-mtc_premium{
+    width:80px;
+    text-align: right;
+    padding-right: 10px;
+}
+.endts-col-pd_premium{
+    width:80px;
+    text-align: right;
+    padding-right: 10px;
+}
+.endts-col-brokerfees{
+    width:100px;
+    text-align: right;
+    padding-right: 10px;
+}
+.endts-col-endtfees{
+    width:80px;
+    text-align: right;
+    padding-right: 10px;
+}
+.endts-col-otherfees{
+    width:80px;
+    text-align: right;
+    padding-right: 10px;
+}
+
+.endts-col-totalpremium{
+    width:110px;
+    text-align: right;
+    padding-right: 10px;
+}
+
+.endts-col-status{width:50px;}
+.endts-col-variance{width:50px;}
+.endts-col-actions{width:50px;}
 
 .modal-wrapper {
     display: none;
@@ -309,7 +374,7 @@ body {
 
 .account-values:hover {
     font-weight: 500;
-    color: green;    
+    color: #1560A0;    
 }
 
 .account-labels {
@@ -386,9 +451,11 @@ li.selectedAccount {
 }
 
 .ace-tables table,
-.ace-tables td {
-    border: 0.5px solid none;
+.ace-tables td,
+.ace-tables th {
+    /* border: 0.5px solid none; */
     cursor: default;
+    border-bottom: 0.5px solid rgba(209, 208, 208, 0.308);
 }
 
 .ace-tables th {
@@ -397,13 +464,18 @@ li.selectedAccount {
 }
 
 .ace-tables tr:hover{
-    background: rgb(209, 206, 206);
+    background: #1560A0;
+    color: ivory;
+    border-radius: 4px 4px 4px 4px ;
 }
 
 .ace-tables td {
     height: 26px;
 }
 
+.negative-financial {
+    color: rgb(179, 11, 11);
+}
 
 table {
     width: auto;
@@ -414,7 +486,7 @@ table {
     margin-bottom: 15px;
     display: grid;
 
-    font-size: 14px;
+    font-size: 13px;
     color:  rgb(85, 84, 84);
 
     overflow-y: auto;
@@ -427,6 +499,10 @@ table {
 
 #drivers-list-table, #vehicles-list-table, #policies-list-table {
     height: 160px;
+}
+
+#endorsements-list-table {
+    height: 370px;
 }
 
 th {
