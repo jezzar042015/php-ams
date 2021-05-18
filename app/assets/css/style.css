@@ -44,15 +44,30 @@ body {
 }
 
 #account-search {
-    display: block;
-    width: 90%;
+    display: inline-flex;
+    width: 80%;
     height: 27px;
     border: none;
     margin-left: 10px;
-    margin-right: 10px;
+    margin-right: 2px;
     margin-top: 3px;
     padding-left: 8px;
     outline: none;
+}
+
+#add-new-account {
+    display: inline-flex;
+    margin-right: 0px;
+    margin-left: 3px;
+    color: white;
+    font-size: 13px;
+    cursor: pointer;
+    padding: 8px 8px 8px 8px;
+    border-radius: 2px;
+}
+
+#add-new-account:hover {
+    background: grey;
 }
 
 #accounts-section {
@@ -348,14 +363,104 @@ body {
 .endts-col-variance{width:50px;}
 .endts-col-actions{width:50px;}
 
-.modal-wrapper {
+
+.form-header {
+    display: block;
+    background: #e4dada31;
+    height: 40px;
+    width: 100%;
+    /* border-radius: 8px 8px 0px 0px; */
+}
+
+.form-body {
+
+    height: auto;
+    width: 100%;
+    display: block;
+    
+}
+
+.form-footer {
+
+    height: 50px;
+    width: 100%;
+    position: absolute;
+    bottom: 0px;
+}
+
+.form-caption {
+    display: inline-flex;
+    margin-top: 8px;
+    margin-left: 15px;
+    font-weight: 650;
+}
+
+.form-close-button {
+    position: absolute;
+    right: 15px;
+    top: 4px;
+    cursor: pointer;
+    padding: 5px;
+}
+
+#modal-wrapper {
     display: none;
     position: fixed;
     top: 0px;
     left: 0px;
     height: 100vh;
     width: 100vw;
-    background-color: rgba(255, 0, 0, 0.185);
+    background-color: rgba(39, 36, 36, 0.726);
+}
+
+.save-btn{
+    border-style: none;
+    padding: 8px 35px 8px 35px;
+    margin-left: 25px;
+    margin-top: 0px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.close-btn{
+    border-style: none;
+    padding: 8px 25px 8px 25px;
+    margin-left: 6px;
+    margin-top: 0px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.save-btn:hover {
+    background: #1560A0;
+    color: azure;
+}
+.close-btn:hover {
+    background: #a10b0be8;
+    color: azure;
+}
+
+#new-account-form {
+    background: lightgray;
+    display: none;
+    height: 800px;
+    width: 1000px;
+    border-radius: 4px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    flex-direction: column;
+    position: relative;
+    bottom: 0px;
+}   
+
+.form-body input{
+    border-style: none;
+    outline: none;
+    padding: 8px 13px 11px 13px;
+    
 }
 
 #account-edit {

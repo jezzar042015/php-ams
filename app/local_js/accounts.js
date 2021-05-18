@@ -426,3 +426,34 @@ function loadAccountEndorsements (accountid) {
     xhr.send();
 
 }
+
+
+document.getElementById('add-new-account').addEventListener('click',show_newAccountForm);
+document.getElementById('close-account-form').addEventListener('click',close_accountForm);
+document.getElementById('close-account-btn').addEventListener('click',close_accountForm);
+
+function show_newAccountForm () {
+    
+    show_modalContainer();
+
+    const accountForm = document.getElementById('new-account-form');
+    accountForm.style.display = 'flex';
+
+}
+
+function close_accountForm () {
+    hide_modalContainer();
+    const accountForm = document.getElementById('new-account-form');
+    accountForm.style.display = 'none';
+}
+
+function show_modalContainer() {
+    const modalWrapper = document.getElementById('modal-wrapper');
+    modalWrapper.style.display = 'block';
+    modalWrapper.style.zIndex = 1;
+}
+
+function hide_modalContainer() {
+    const modalWrapper = document.getElementById('modal-wrapper');
+    modalWrapper.style.display = 'none';
+}
