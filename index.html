@@ -18,6 +18,7 @@
             <div id="accounts-list">
                 <div id="accounts-header">
                     <input type="search" placeholder="Search Legal name or DBA" id="account-search">
+                    <span id="add-new-account"><i class="fa fa-plus"></i></span>
                 </div>
                 <div id="accounts-options"></div>
             </div>
@@ -27,7 +28,7 @@
         <div id="account-details-container">
             <div id="account-detail">
                 <div id="account-name-header">
-                    <p id="legalname" class="section-names">AGUSTINA VEGA</p>
+                    <p id="legalname" class="section-names">ACCOOUNT NAME</p>
                     <span id="account-edit"><i class="fa fa-pencil"></i></span>    
                 </div>
                 <div id="account-detail-col-1">
@@ -142,25 +143,7 @@
                 <div id="vehicles-list-containter">
                     <table class="ace-tables" id="vehicles-list-table">
 
-                        <!-- <tr>
-                            <th class="vehicles-col-year">Year</th>
-                            <th class="vehicles-col-make">Make</th>
-                            <th class="vehicles-col-vin">VIN</th>
-                            <th class="vehicles-col-unit">Unit</th>
-                            <th class="vehicles-col-type">Type</th>
-                            <th class="vehicles-col-value">Value</th>
-                            <th class="vehicles-col-driver">Driver</th>
-                        </tr> -->
-                        
-                        <!-- <tr>
-                            <td>' + XXXX + '</td>
-                            <td>' + Freightliner + '</td>
-                            <td>' + VIN + '</td>
-                            <td>' + Unit + '</td>
-                            <td>' + Type + '</td>
-                            <td>' + value + '</td>
-                            <td>' + Driver + '</td>
-                        </tr> -->
+                        <!-- <tr> <th class="vehicles-col-year">Year</th> <th class="vehicles-col-make">Make</th> <th class="vehicles-col-vin">VIN</th> <th class="vehicles-col-unit">Unit</th> <th class="vehicles-col-type">Type</th> <th class="vehicles-col-value">Value</th> <th class="vehicles-col-driver">Driver</th> </tr>--><!-- <tr> <td>' + XXXX + '</td><td>' + Freightliner + '</td><td>' + VIN + '</td><td>' + Unit + '</td><td>' + Type + '</td><td>' + value + '</td><td>' + Driver + '</td></tr>-->
 
                     </table>
                 </div>
@@ -240,7 +223,40 @@
         
     </div>
 
-    <div class="modal-wrapper">
+    <div id="modal-wrapper">
+
+        <!-- account-form -->
+            <div id="new-account-form">
+                <div class="form-header">
+                    <div class="form-caption">
+                        <p>NEW ACCOUNT</p>
+                        <span id="close-account-form" class="form-close-button"><i class="fa fa-times"></i></span>
+                    </div>
+                    
+                </div>
+                <hr>
+                <div class="form-body">
+                    <label for="legalname">Legal Name</label>
+                    <input type="text" name="legalname">
+                    <label for="dba">DBA</label>
+                    <input type="text" name="dba">
+                    <label for="usdot">USDOT</label>
+                    <input type="text" name="usdot">
+
+                </div>
+              
+                <div class="form-footer">
+                    <div>
+                        <button class="save-btn" id="save-account-btn" type="submit">
+                            Save
+                        </button>
+                        <button class="close-btn" id="close-account-btn" type="submit">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+
 
     </div>
 </body>
