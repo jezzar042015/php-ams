@@ -236,13 +236,39 @@
                 </div>
                 <hr>
                 <div class="form-body">
-                    <label for="legalname">Legal Name</label>
-                    <input type="text" name="legalname">
-                    <label for="dba">DBA</label>
-                    <input type="text" name="dba">
-                    <label for="usdot">USDOT</label>
-                    <input type="text" name="usdot">
+                    <div id="account-form-col-1">
+                        <label for="fm_legalname">Legal Name</label>
+                        <input type="text" id="fm_legalname">
+                        <label for="fm_dba">DBA</label>
+                        <input type="text" id="fm_dba">
+                        <label for="fm_usdot">USDOT</label>
+                        <input type="text" id="fm_usdot">
+                        <label for="fm_authority">Authority</label>
+                        <input type="text" id="fm_authority">
+                        <label for="fm_taxid">Tax ID</label>
+                        <input type="text" id="fm_taxid">
+                        <label for="fm_statePermit">State Permit</label>
+                        <input type="text" id="fm_statePermit">
+                        <label for="fm_radius">Radius</label>
+                        <input type="text" id="fm_radius">
+                        <label for="fm_operation">Operation</label>
+                        <input type="text" id="fm_operation">
+                        <label for="fm_type">Type</label>
+                        <select id="fm_type">
+                            <option value="1">Trucking</option>
+                            <option value="2">Commercial</option>
+                        </select>
+                    </div>
+                    <div id="account-form-col-2">
+                        
+                        <label for="fm_status">Status</label>
+                        <select id="fm_status">
+                            <option value="1">Active</option>
+                            <option value="2">Inactive</option>
+                            <option value="3">Prospect</option>
+                        </select>
 
+                    </div>
                 </div>
               
                 <div class="form-footer">

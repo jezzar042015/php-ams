@@ -1,4 +1,54 @@
-SELECT
+SELECT accountid, legalname from accounts where legalname like '%right time%';
+
+select policyid, policynumber, coveragetype,
+	if(expiration > current_date,'active','expired') status
+from policies where accountid = 36
+order by status, coveragetype;
+
+
+DELIMITER //
+
+CREATE PROCEDURE GetAccountActiveRatedCoverages (IN _accountid INT)
+
+BEGIN
+	SELECT policyid, policynumber, coveragetype 
+	FROM policies 
+	WHERE accountid = _accountid
+		AND (premium IS NULL 
+					AND (baseperunit > 0 
+							OR PDRate > 0 
+							OR trailerrate > 0 
+							OR not_rate > 0 
+							OR ti_rate > 0))
+		AND (expiration >= current_date);
+END //
+
+DELIMITER ;
+
+SELECT policyid, policynumber, coveragetype 
+FROM policies 
+WHERE accountid = 39
+	AND (premium IS NULL 
+				AND (baseperunit > 0 
+						OR PDRate > 0 
+                        OR trailerrate > 0 
+                        OR not_rate > 0 
+                        OR ti_rate > 0))
+	AND (expiration >= current_date);
+
+select * from policies where accountid = 35; 
+    
+CALL GetAccountActiveRatedCoverages (150);
+
+
+USE ams;
+
+DELIMITER //
+
+CREATE PROCEDURE GetAccountGroupedEndorsements ( IN _accountid INT)
+
+BEGIN
+	SELECT
 	effective, 
     -- stage, endt_action,  
     (case
@@ -6,11 +56,7 @@ SELECT
         when endt_action = -1 then 'DELETE' 
     end) AS action_name, 
     -- endt_type, 
-    (case
-		when endt_type in (1,2,3) THEN endt_description
-        when endt_type = 4 THEN (SELECT CONCAT(firstname,' ',lastname) FROM drivers WHERE driverid = eg.driverid)
-		else endt_description
-    end) as endt_description, 
+    endt_description, 
     -- eg.vehicleid, eg.driverid, 
     vehicle_year, makename, vin, 
     
@@ -88,22 +134,20 @@ FROM ((SELECT
         MAX(accountid) as accountid
 		-- CONCAT(MAX(effective),'|',MAX(endt_action),'|',MAX(endt_type),'|',(IFNULL(MAX(driverid),0) + IFNULL(MAX(vehicleid),0)),'|',MAX(accountid)) AS lineID,
 FROM endorsements
-WHERE accountid = 35 
+WHERE accountid = _accountid 
 GROUP BY CONCAT(effective,'|',endt_action,'|',endt_type,'|',(IFNULL(driverid,0) + IFNULL(vehicleid,0)),'|',accountid)
 ORDER BY effective DESC, stage DESC, endt_type) AS eg 
 	LEFT JOIN vehicles AS v ON eg.vehicleid = v.vehicleid) 
     LEFT JOIN vehiclemakes AS vm ON v.makeid = vm.makeid;
+END //
 
-SET SQL_safe_updates = 0;
+DELIMITER ;
+
+repair table mysql.proc;
+repair table mysql.proc;
 
 
-CREATE INDEX endt_indexes
-ON endorsements(accountid, vehicleid, driverid, effective, endt_type, endt_action);
 
-ALTER Table endorsements
-DROP INDEX endt_indexes;
-
-CALL GetAccountGroupedEndorsements (36);
-
-use ams;
+SELECT * 
+FROM mysql.proc;
 

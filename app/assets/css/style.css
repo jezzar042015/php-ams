@@ -456,7 +456,45 @@ body {
     bottom: 0px;
 }   
 
-.form-body input{
+
+
+#new-account-form input,
+#new-account-form label,
+#new-account-form select {
+    display: block;
+    width: 460px;
+    margin-left: 15px;
+    margin-top: 10px;
+
+}
+
+#new-account-form input {
+    border-radius: 2px;
+}
+
+.form-body {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+#new-account-form label {
+    padding-left: 10px;
+    font-size: 12px;
+}
+
+#account-form-col-1 {
+    width: 50%;
+    grid-column: 1/ span 1; 
+}   
+
+#account-form-col-2 {
+    width: 50%;
+    grid-column: 2/ span 1;
+}
+
+.form-body input,
+.form-body select
+{
     border-style: none;
     outline: none;
     padding: 8px 13px 11px 13px;
