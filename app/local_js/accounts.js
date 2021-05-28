@@ -432,6 +432,9 @@ document.getElementById('add-new-account').addEventListener('click',show_newAcco
 document.getElementById('close-account-form').addEventListener('click',close_accountForm);
 document.getElementById('close-account-btn').addEventListener('click',close_accountForm);
 
+document.getElementById('add-new-policy').addEventListener('click',function () {show_policy_form("new_policy")});
+document.getElementById('close-policy-form').addEventListener('click',close_policy_form);
+
 function show_newAccountForm () {
     
     show_modalContainer();
@@ -439,6 +442,29 @@ function show_newAccountForm () {
     const accountForm = document.getElementById('new-account-form');
     accountForm.style.display = 'flex';
 
+}
+
+function show_policy_form (typeofuse) {
+    
+    show_modalContainer();
+
+    const accountForm = document.getElementById('policy-form');
+    accountForm.style.display = 'flex';
+
+    switch (typeofuse) {
+        case 'new_policy':
+            initiate_newpolicyform();
+            break;
+        case 'edit_policy':
+            break;
+    }
+   
+}
+
+function close_policy_form () {
+    hide_modalContainer();
+    const accountForm = document.getElementById('policy-form');
+    accountForm.style.display = 'none';
 }
 
 function close_accountForm () {

@@ -138,6 +138,7 @@
             <div id="account-vehicles">
                 <div id="vehicles-section-header">
                     <p class="section-names">VEHICLES</p>
+                    <span id="add-new-vehicle"><i class="fa fa-plus"></i></span>
                 </div>
                 
                 <div id="vehicles-list-containter">
@@ -153,6 +154,7 @@
             <div id="account-policies">
                 <div id="policies-section-header">
                     <p class="section-names">POLICIES</p>
+                    <span id="add-new-policy"><i class="fa fa-plus"></i></span>
                 </div>
                 <div id="policies-list-containter">
                     <table class="ace-tables" id="policies-list-table">
@@ -237,35 +239,115 @@
                 <hr>
                 <div class="form-body">
                     <div id="account-form-col-1">
-                        <label for="fm_legalname">Legal Name</label>
-                        <input type="text" id="fm_legalname">
-                        <label for="fm_dba">DBA</label>
-                        <input type="text" id="fm_dba">
-                        <label for="fm_usdot">USDOT</label>
-                        <input type="text" id="fm_usdot">
-                        <label for="fm_authority">Authority</label>
-                        <input type="text" id="fm_authority">
-                        <label for="fm_taxid">Tax ID</label>
-                        <input type="text" id="fm_taxid">
-                        <label for="fm_statePermit">State Permit</label>
-                        <input type="text" id="fm_statePermit">
-                        <label for="fm_radius">Radius</label>
-                        <input type="text" id="fm_radius">
-                        <label for="fm_operation">Operation</label>
-                        <input type="text" id="fm_operation">
-                        <label for="fm_type">Type</label>
-                        <select id="fm_type">
+                        <label for="fm-account-legalname">Legal Name</label>
+                        <input type="text" id="fm-account-legalname">
+                        <label for="fm-account-dba">DBA</label>
+                        <input type="text" id="fm-account-dba">
+                        <label for="fm-account-usdot">USDOT</label>
+                        <input type="text" id="fm-account-usdot">
+                        <label for="fm-account-authority">Authority</label>
+                        <input type="text" id="fm-account-authority">
+                        <label for="fm-account-taxid">Tax ID</label>
+                        <input type="text" id="fm-account-taxid">
+                        <label for="fm-account-statePermit">State Permit</label>
+                        <input type="text" id="fm-account-statePermit">
+                        
+                        <label for="fm-account-radius">Radius</label>
+                        <select id="fm-account-radius">
+                            <option value="0"></option>
+                            <option value="1">Local</option>
+                            <option value="2">Interstate</option>
+                        </select>
+
+                        <label for="fm-account-operation">Operation</label>
+                        <select id="fm-account-operation">
+                            <option value="0"></option>
+                            <option value="1">Dry</option>
+                            <option value="2">Refrigerated</option>
+                        </select>
+                            
+                        <label for="fm-account-type">Type</label>
+                        <select id="fm-account-type">
+                            <option value="0"></option>
                             <option value="1">Trucking</option>
                             <option value="2">Commercial</option>
                         </select>
-                    </div>
-                    <div id="account-form-col-2">
-                        
-                        <label for="fm_status">Status</label>
-                        <select id="fm_status">
+
+                        <label for="fm-account-status">Status</label>
+                        <select id="fm-account-status" class="ace-selects">
                             <option value="1">Active</option>
                             <option value="2">Inactive</option>
                             <option value="3">Prospect</option>
+                        </select>
+
+                        <label for="fm-account-yearClient">Year</label>
+                        <select id="fm-account-yearClient" class="ace-selects">
+                            <option value="0"></option>
+                            <option value="2021">2021</option>
+                            <option value="2020">2020</option>
+                            <option value="2019">2019</option>
+                            <option value="2018">2018</option>
+                        </select>
+
+                    </div>
+                    <div id="account-form-col-2">
+
+                        <label for="fm-account-accountSource">Source</label>
+                        <select id="fm-account-accountSource" class="ace-selects">
+                            <option value="0"></option>
+                            <option value="1">Business Network</option>
+                            <option value="2">Client Referral</option>
+                            <option value="3">Email Marketing</option>
+                            <option value="4">Google Search</option>
+                        </select>
+
+                        <label for="fm-account-agent">Agent</label>
+                        <select id="fm-account-agent" class="ace-selects">
+                            <option value="0"></option>
+                            <option value="1">Anhdy Nguyen</option>
+                            <option value="2">Mario Martinez</option>
+                            <option value="3">Jackie Hoang</option>
+                            <option value="4">Julissa Medina</option>
+                        </select>
+
+                        <label for="fm-account-mailAddress">Mailing Address</label>
+                        <input type="text" id="fm-account-mailAddress">
+
+                        <label for="fm-account-mailState">Mailing State</label>
+                        <select id="fm-account-mailState" class="ace-selects">
+                            <option value=""></option>
+                            <option value="AL">Alabama</option>
+                            <option value="AS">Alaska</option>
+                            <option value="AZ">Arizona</option>
+                            <option value="AK`">Arkansas</option>
+                        </select>
+                        
+                        <label for="fm-account-mailCity">Mailing City</label>
+                        <select id="fm-account-mailCity" class="ace-selects" disabled>
+                        </select>
+
+                        <label for="fm-account-mailZip">Mailing Zip</label>
+                        <select id="fm-account-mailZip" class="ace-selects" disabled>
+                        </select>
+
+                        <label for="fm-account-garageAddress">Garaging Address</label>
+                        <input type="text" id="fm-account-garageAddress">
+
+                        <label for="fm-account-garageState">Garaging State</label>
+                        <select id="fm-account-garageState" class="ace-selects">
+                            <option value=""></option>
+                            <option value="AL">Alabama</option>
+                            <option value="AS">Alaska</option>
+                            <option value="AZ">Arizona</option>
+                            <option value="AK`">Arkansas</option>
+                        </select>
+                        
+                        <label for="fm-account-garageCity">Garaging City</label>
+                        <select id="fm-account-garageCity" class="ace-selects" disabled>
+                        </select>
+
+                        <label for="fm-account-garageZip">Garaging Zip</label>
+                        <select id="fm-account-garageZip" class="ace-selects" disabled>
                         </select>
 
                     </div>
@@ -282,11 +364,76 @@
                     </div>
                 </div>
             </div>
+        
+        <!-- vehicle-form -->    
+        <div id="vehicle-form">
+            <div class="form-header">
+                <div class="form-caption">
+                    <p>NEW VEHICLE</p>
+                    <span id="close-vehicle-form" class="form-close-button"><i class="fa fa-times"></i></span>
+                </div>
+            </div>
+            <div class="form-body"></div>
+            <div class="form-footer"></div>
+        </div>
 
+        <!-- policy-form -->    
+            <div id="policy-form">
+                <div class="form-header">
+                    <div class="form-caption">
+                        <p>NEW POLICY</p>
+                        <span id="close-policy-form" class="form-close-button"><i class="fa fa-times"></i></span>
+                    </div>
+                </div>
+                <div class="form-body">
+                    <div>
+                        <div>  
+                            <label for="fm-policy-effective" id="fm-policy-effective-label">Effective</label>
+                            <input type="date" id="fm-policy-effective">
+                        </div>
+                        <div>
+                            <label for="fm-policy-expiration" id="fm-policy-expiration-label">Expiration</label>
+                            <input type="date" id="fm-policy-expiration">
+                        </div>
+                        <div>
+                            <label for="fm-policy-coveragetype">Coverage Type</label>
+                            <select name="coveragetype" id="fm-policy-coveragetype">
+                                <option value="0"></option>
+                                <option value="1">Auto Liability</option>
+                                <option value="2">Motor Truck Cargo</option>
+                                <option value="3">Physical Damage</option>
+                                <option value="4">General Liability</option>
+                                <option value="5">Excess Liability</option>
+                                <option value="6">Others</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="isGrossReceipts" id="isGrossReceipts-label">Gross Receipts</label>
+                            <input type="checkbox" id="isGrossReceipts">
+                        </div>
+
+                        <div>
+                            <label for="fm-policy-baseperunit" id="fm-policy-baseperunit-label">Base Per Unit</label>
+                            <input type="number" id="fm-policy-baseperunit">
+                        </div>
+                        <div>
+                            <label for="fm-policy-pdrate" id="fm-policy-pdrate-label">PD Rate</label>
+                            <input type="number" id="fm-policy-pdrate">
+                        </div>
+                        <div>
+                            <label for="fm-policy-premium" id="fm-policy-premium-label">Premium</label>
+                            <input type="number" id="fm-policy-premium">
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="form-footer"></div>
+            </div>
 
     </div>
 </body>
 <script src="app/local_js/accounts.js"></script>
+<script src="app/local_js/policies.js"></script>
 <script src="app/local_js/formatting.js"></script>
 
 <script src="https://kit.fontawesome.com/209b70da2c.js" crossorigin="anonymous"></script>
