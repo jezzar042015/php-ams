@@ -387,14 +387,29 @@
                 </div>
                 <div class="form-body">
                     <div>
-                        <div>  
-                            <label for="fm-policy-effective" id="fm-policy-effective-label">Effective</label>
-                            <input type="date" id="fm-policy-effective">
+
+                        <div>
+                            <label for="fm-policy-carrier">Carrier</label>
+                            <select id="fm-policy-carrier">
+                                <option value="0"></option>
+                                <option value="1">Accredited Surety and Casualty Company</option>
+                                <option value="2">Ace American Insurance Company</option>
+                            </select>
                         </div>
                         <div>
-                            <label for="fm-policy-expiration" id="fm-policy-expiration-label">Expiration</label>
-                            <input type="date" id="fm-policy-expiration">
+                            <label for="fm-policy-mga">MGA</label>
+                            <select id="fm-policy-mga">
+                                <option value="0"></option>
+                                <option value="1">ABA Insurance Services Inc</option>
+                                <option value="2">American Team Managers</option>
+                                <option value="3">Bass Underwriters Inc</option>
+                            </select>
                         </div>
+                        <div>
+                            <label for="fm-policy-policynumber" id="fm-policy-policynumber-label">Policy Number</label>
+                            <input type="text" id="fm-policy-policynumber">
+                        </div>
+
                         <div>
                             <label for="fm-policy-coveragetype">Coverage Type</label>
                             <select name="coveragetype" id="fm-policy-coveragetype">
@@ -407,6 +422,36 @@
                                 <option value="6">Others</option>
                             </select>
                         </div>
+                        <div>
+                            <label for="fm-policy-notes">Notes</label>
+                            <textarea id="fm-policy-notes" ></textarea>
+                        </div>
+                        <div>  
+                            <label for="fm-policy-binddate" id="fm-policy-binddate-label">Bind Date</label>
+                            <input type="date" id="fm-policy-binddate">
+                        </div>
+                        <div>  
+                            <label for="fm-policy-effective" id="fm-policy-effective-label">Effective</label>
+                            <input type="date" id="fm-policy-effective">
+                        </div>
+                        <div>
+                            <label for="fm-policy-expiration" id="fm-policy-expiration-label">Expiration</label>
+                            <input type="date" id="fm-policy-expiration">
+                        </div>
+
+                        <div>
+                            <label for="fm-policy-premiumfinancer">Premium Financer</label>
+                            <select id="fm-policy-premiumfinancer">
+                                <option value="0"></option>
+                                <option value="1">Top Premium Finance Company</option>
+                                <option value="2">Pacific Bank</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="fm-policy-accountnumber" id="fm-policy-accountnumber-label">Account Number</label>
+                            <input type="text" id="fm-policy-accountnumber">
+                        </div>
+
                         <div>
                             <label for="isGrossReceipts" id="isGrossReceipts-label">Gross Receipts</label>
                             <input type="checkbox" id="isGrossReceipts">
@@ -421,9 +466,70 @@
                             <input type="number" id="fm-policy-pdrate">
                         </div>
                         <div>
+                            <label for="fm-policy-trailerrate" id="fm-policy-trailerrate-label">Trailer Rate</label>
+                            <input type="number" id="fm-policy-trailerrate">
+                        </div>
+                        <div>
+                            <label for="fm-policy-duesperunit" id="fm-policy-duesperunit-label">Dues Per Unit</label>
+                            <input type="number" id="fm-policy-duesperunit">
+                        </div>
+                        <div>
+                            <label for="fm-policy-bfrate" id="fm-policy-bfrate-label">BF Per Unit</label>
+                            <input type="number" id="fm-policy-bfrate">
+                        </div>
+                        <div>
+                            <label for="fm-policy-brokerfee" id="fm-policy-brokerfee-label">Broker Fee</label>
+                            <input type="number" id="fm-policy-brokerfee">
+                        </div>                        
+                        <div>
+                            <label for="fm-policy-notrate" id="fm-policy-notrate-label">NOT Rate</label>
+                            <input type="number" id="fm-policy-notrate">
+                        </div>
+                        <div>
+                            <label for="fm-policy-tirate" id="fm-policy-tirate-label">TI Rate</label>
+                            <input type="number" id="fm-policy-tirate">
+                        </div>
+                        <div>
                             <label for="fm-policy-premium" id="fm-policy-premium-label">Premium</label>
                             <input type="number" id="fm-policy-premium">
                         </div>
+                        <div>
+                            <label for="fm-policy-strate" id="fm-policy-strate-label" >Surplus Tax Rate</label>
+                            <input type="number" id="fm-policy-strate" value="3.25">
+                        </div>
+                        <div>
+                            <label for="fm-policy-commrate" id="fm-policy-commrate-label" >Commission Rate</label>
+                            <input type="number" id="fm-policy-commrate" value="10.00">
+                        </div>
+                        <div>
+                            <label for="fm-policy-commission" id="fm-policy-commission-label">Commission</label>
+                            <input type="number" id="fm-policy-commission">
+                        </div>
+                        <div>
+                            <label for="fm-policy-surcharge" id="fm-policy-surcharge-label">Surcharge</label>
+                            <input type="number" id="fm-policy-surcharge">
+                        </div>
+                        <div>
+                            <label for="fm-policy-surplustax" id="fm-policy-surplustax-label">Surplus Line Tax</label>
+                            <input type="number" id="fm-policy-surplustax">
+                        </div>
+                        <div>
+                            <label for="fm-policy-policyfees" id="fm-policy-policyfees-label">Policy Fees</label>
+                            <input type="number" id="fm-policy-policyfees">
+                        </div>
+                        <div>
+                            <label for="fm-policy-mgafees" id="fm-policy-mgafees-label">MGA Fees</label>
+                            <input type="number" id="fm-policy-mgafees">
+                        </div>
+                        <div>
+                            <label for="fm-policy-otherfees" id="fm-policy-otherfees-label">Other Fees</label>
+                            <input type="number" id="fm-policy-otherfees">
+                        </div>
+                        <div>
+                            <label for="fm-policy-total" id="fm-policy-total-label">Total</label>
+                            <input type="number" id="fm-policy-total">
+                        </div>
+
                     </div>
                     
                 </div>

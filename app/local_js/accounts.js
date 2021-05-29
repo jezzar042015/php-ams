@@ -40,9 +40,23 @@ function loadAccountsList(accountsToLoad) {
     document.getElementById('accounts-options').innerHTML = acclist;
 }
 
+function removeAccountsSelectionIndicator() {
+    let accountoptions = document.getElementById('accounts-options').firstChild.children;
+
+    for (let i = 0; i<accountoptions.length; i++) {
+        accountoptions[i].classList.remove("selectedAccount");
+        accountoptions[i].classList.add("unselectedAccount");
+    
+    }
+}
+
 function loadAccountSelect(accountID) {
     
-    // document.getElementById(accountID).classList.add("selectedAccount");
+    removeAccountsSelectionIndicator();
+
+    document.getElementById(accountID).classList.add("selectedAccount");
+    document.getElementById(accountID).classList.remove("unselectedAccount");
+    
     var account = accData.accounts.filter(function(acc){
         return acc.accountid == accountID;
     })

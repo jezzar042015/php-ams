@@ -594,7 +594,6 @@ body {
     margin-left: 5px;
     margin-right: 5px;
     cursor: pointer;
-    font-weight: 300;
     font-size: 14px;
     color: whitesmoke;
     border-radius: 3px;
@@ -606,9 +605,13 @@ body {
     background-color: #4b4f58;
 }
 
-li.selectedAccount {
+.unselectedAccount {
+    font-weight: 300;
+}
+
+.selectedAccount {
     font-weight: 500;
-    background-color: #4b4f58;
+    background-color: #626672;
 }
 
 .section-names {
@@ -724,4 +727,11 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+#fm-policy-surplustax,
+#fm-policy-commission,
+#fm-policy-total
+ {
+    pointer-events: none;
 }
